@@ -1,0 +1,18 @@
+td, th {
+  width: 16.5%;
+}
+
+td.buttons, th.buttons {
+  width: 17.5%;
+  margin: auto;
+}
+
+div.thumbnail {
+  padding-top: 24px;
+  transition: .5s ease;
+}
+
+div.thumbnail:hover {
+  border: 1px solid;
+  transition: .5s ease;
+}

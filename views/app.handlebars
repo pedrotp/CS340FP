@@ -1,0 +1,64 @@
+<div class="container">
+  <h1><img height="50px" src="/img/science-book.png" alt="Science Book"> LabBase 3000</h1>
+  <!-- Modal -->
+  <div class="modal fade" id="labModal" tabindex="-1" role="dialog" aria-labelledby="labModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="labModalLabel">Create a new Lab</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-inline">
+            <div class="form-group">
+              <label class="sr-only" for="name-field">Lab Name</label>
+              <input type="text" class="form-control" name="labName" placeholder="Lab Name">
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="ext-field">Extension #</label>
+              <input type="text" class="form-control" name="labExt" placeholder="Extension #">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button id="createLab" type="submit" class="btn btn-primary">Create Lab</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+
+  <div id="maindiv">
+    {{#if labs.length}}
+    <div class="row">
+      {{#each labs}}
+        <div class="col-sm-6 col-md-4">
+          <div data-id="{{this.id}}" class="thumbnail">
+            <img height="50px" width="50px" src="/img/bond.png" alt="Bond">
+            <div class="caption">
+              <h4 class="text-center">{{this.name}}</h4>
+              <p class="text-center">( ext: {{this.ext}} )</p>
+            </div>
+          </div>
+        </div>
+      {{/each}}
+    </div>
+    {{else}}
+      <h3 class="text-center">Your labs will appear here</h3>
+    {{/if}}
+  </div>
+  <hr>
+  <div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-lg btn-block btn-success" data-toggle="modal" data-target="#labModal">
+      Create New Lab
+    </button>
+  </div>
+  <hr>
+  <!-- <div class="alert alert-info alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong>Note:</strong> Click on any field below to edit it. Click 'Update' when you're done to save updates to the database.
+  </div>
+  <a id="reset-button" class="btn btn-lg btn-info col-sm-6 col-sm-offset-3 col-xs-12" role="button" href="#">Reset Table</a> -->
+</div>

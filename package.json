@@ -1,0 +1,20 @@
+{
+  "name": "get-post-checker",
+  "version": "1.0.0",
+  "description": "HW Assignment: GET and POST checker",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "Pedro Torres Picon",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "express-handlebars": "^3.0.0",
+    "fs": "0.0.1-security",
+    "moment": "^2.17.1",
+    "morgan": "^1.8.1",
+    "promise-mysql": "^3.0.1"
+  }
+}
