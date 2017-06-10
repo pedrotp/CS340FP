@@ -22,27 +22,31 @@ $('#createLab').click(function(event) {
 
 /* Click on any of the Lab cards */
 $('#maindiv').on('click', '.thumbnail', function(event) {
-  var fdata = {};
-  fdata.id = $(this).attr('data-id');
-  $this = $(this);
-  $.ajax({
-    method: 'DELETE',
-    url: path + 'lab',
-    data: fdata,
-    success: function () {
-      $this.parent().remove();
-    }
-  });
+  window.location.href = "/lab:" + $(this).attr('data-id');
   event.preventDefault();
 });
 
+// delete lab:
+// var fdata = {};
+// fdata.id = $(this).attr('data-id');
+// $this = $(this);
+// $.ajax({
+//   method: 'DELETE',
+//   url: path + 'lab',
+//   data: fdata,
+//   success: function () {
+//     $this.parent().remove();
+//   }
+// });
+
 /* Press any of the delete buttons */
-$('#maindiv').on('click', 'input[type="button"][value="Delete"]', function (event) {
+$('#maindiv').on('click', 'input[type="button"][value="Remove"]', function (event) {
   var $tr = $(this).closest('tr');
   var id = $tr.find('input[type="hidden"][name="id"]').val();
+
   $.ajax({
     method: 'DELETE',
-    url: path + 'workouts',
+    url: path + $tr.attr("data-type"),
     data: { id: id }
   })
   .done(function () {
@@ -92,16 +96,4 @@ $('#maindiv').on('click', 'input[type="button"][value="Update"]', function (even
       $(elem).text(val).show();
     });
   });
-});
-
-/* Click on the reset button */
-$('#reset-button').click(function(event) {
-  $.ajax({
-    method: 'POST',
-    url: path + 'reset-table'
-  })
-  .done(function (response) {
-    $('#maindiv').html('<h3 class="text-center">Your exercises will appear here</h3>');
-  });
-  event.preventDefault();
 });

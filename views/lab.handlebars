@@ -1,0 +1,215 @@
+<div class="container">
+  <a href="/"><h1><img height="50px" src="/img/science-book.png" alt="Science Book"> LabBase 3000  / </h1></a><h2><img height="40px" src="/img/bond.png" alt="Bond">{{name}}</h2><hr>
+  <!-- New Employee Modal -->
+  <div class="modal fade" id="empModal" tabindex="-1" role="dialog" aria-labelledby="labModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="labModalLabel">Create a new Lab</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-inline">
+            <div class="form-group">
+              <label class="sr-only" for="name-field">Lab Name</label>
+              <input type="text" class="form-control" name="labName" placeholder="Lab Name">
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="ext-field">Extension #</label>
+              <input type="text" class="form-control" name="labExt" placeholder="Extension #">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button id="createLab" type="submit" class="btn btn-primary">Create Lab</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Project Modal -->
+  <div class="modal fade" id="projModal" tabindex="-1" role="dialog" aria-labelledby="labModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="labModalLabel">Create a new Lab</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-inline">
+            <div class="form-group">
+              <label class="sr-only" for="name-field">Lab Name</label>
+              <input type="text" class="form-control" name="labName" placeholder="Lab Name">
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="ext-field">Extension #</label>
+              <input type="text" class="form-control" name="labExt" placeholder="Extension #">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button id="createLab" type="submit" class="btn btn-primary">Create Lab</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- New Equipment Modal -->
+  <div class="modal fade" id="eqModal" tabindex="-1" role="dialog" aria-labelledby="labModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="labModalLabel">Create a new Lab</h4>
+        </div>
+        <div class="modal-body">
+          <form class="form-inline">
+            <div class="form-group">
+              <label class="sr-only" for="name-field">Lab Name</label>
+              <input type="text" class="form-control" name="labName" placeholder="Lab Name">
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="ext-field">Extension #</label>
+              <input type="text" class="form-control" name="labExt" placeholder="Extension #">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button id="createLab" type="submit" class="btn btn-primary">Create Lab</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="employees">
+    <h3><img height="32px" src="/img/employee.png" alt="Employee"> Employees at {{name}} ({{employees.length}}): </h3>
+    <!-- Button to trigger modal -->
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#empModal">
+      + Add Employee
+    </button>
+    <hr>
+    {{#if employees.length}}
+      <table class="table table-bordered table-condensed table-striped table-responsive">
+        <tr><th class="text-center">First Name</th><th class="text-center">Last Name</th><th class="text-center">Extension</th><th class="text-center">Projects</th><th class="text-center">Equipment</th><th class="buttons"></th></tr>
+        {{#each employees}}
+            <tr class="reg-row" data-type="employees">
+              <input type="hidden" name="id" value={{this.id}}>
+              <td>
+                <p class="text-center">{{this.fname}}</p>
+              </td>
+              <td>
+                <p class="text-center">{{this.lname}}</p>
+              </td>
+              <td>
+                <p class="text-center">{{this.ext}}</p>
+              </td>
+              <td>
+                <p class="text-center table-link">See Projects</p>
+              </td>
+              <td>
+                <p class="text-center table-link">See Equipment</p>
+              </td>
+              <td class="buttons">
+                  <input class="btn btn-default" type="button" value="Update">
+                  <input class="btn btn-danger" type="button" value="Remove">
+              </td>
+            </tr>
+        {{/each}}
+      </table>
+    {{else}}
+      <h3 class="text-center">This lab has no employees</h3>
+    {{/if}}
+
+  </div>
+  <hr>
+
+  <div id="projects">
+    <h3><img height="32px" src="/img/project.png" alt="Project"> Projects at {{name}} ({{projects.length}}):</h3>
+    <!-- Button to trigger modal -->
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#projModal">
+      + Add Project
+    </button>
+    <hr>
+    {{#if projects.length}}
+      <table class="table table-bordered table-condensed table-striped table-responsive">
+        <tr><th class="text-center">Name</th><th class="text-center">Request Date</th><th class="text-center">Due Date</th><th class="text-center">Objective</th><th class="text-center">Employees</th><th class="text-center">Equipment</th><th class="buttons"></th></tr>
+        {{#each projects}}
+            <tr class="reg-row" data-type="employees">
+              <input type="hidden" name="id" value={{this.id}}>
+              <td>
+                <p class="text-center">{{this.name}}</p>
+              </td>
+              <td>
+                <p class="text-center">{{this.reqdate}}</p>
+              </td>
+              <td>
+                <p class="text-center">{{this.duedate}}</p>
+              </td>
+              <td>
+                <p class="text-center table-link">See Objective</p>
+              </td>
+              <td>
+                <p class="text-center table-link">See Employees</p>
+              </td>
+              <td>
+                <p class="text-center table-link">See Equipment</p>
+              </td>
+              <td class="buttons">
+                  <input class="btn btn-default" type="button" value="Update">
+                  <input class="btn btn-danger" type="button" value="Remove">
+              </td>
+            </tr>
+        {{/each}}
+      </table>
+    {{else}}
+      <h3 class="text-center">There are no active projects in this lab</h3>
+    {{/if}}
+
+  </div>
+  <hr>
+
+  <div id="equipment">
+    <h3><img height="32px" src="/img/equipment.png" alt="Equipment"> Equipment at {{name}} ({{equipment.length}}):</h3>
+    <!-- Button to trigger modal -->
+    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#eqModal">
+      + Add Equipment
+    </button>
+    <hr>
+    {{#if equipment.length}}
+      <table class="table table-bordered table-condensed table-striped table-responsive">
+        <tr><th class="text-center">Type</th><th class="text-center">Calibration Date</th><th class="text-center">Purchase Date</th><th class="text-center">Maintainer</th><th class="text-center">Projects</th><th class="buttons"></th></tr>
+        {{#each projects}}
+            <tr class="reg-row" data-type="employees">
+              <input type="hidden" name="id" value={{this.id}}>
+              <td>
+                <p class="text-center">{{this.type}}</p>
+              </td>
+              <td>
+                <p class="text-center">{{this.cdate}}</p>
+              </td>
+              <td>
+                <p class="text-center">{{this.pdate}}</p>
+              </td>
+              <td>
+                <p class="text-center table-link">{{this.maintainer}}</p>
+              </td>
+              <td>
+                <p class="text-center table-link">Used in...</p>
+              </td>
+              <td class="buttons">
+                  <input class="btn btn-default" type="button" value="Update">
+                  <input class="btn btn-danger" type="button" value="Remove">
+              </td>
+            </tr>
+        {{/each}}
+      </table>
+    {{else}}
+      <h3 class="text-center">There is no equipment in this lab</h3>
+    {{/if}}
+
+  </div>
+  <hr>
+</div>
