@@ -107,6 +107,18 @@ app.delete('/lab', function (req, res, next) {
   });
 });
 
+app.get('/employees', function (req, res, next) {
+  pool.query('SELECT * FROM `employee` ORDER BY id').then(function (results, fields) {
+    res.status(200);
+    res.sendJSON(JSON.stringify(results));
+  }).catch(function (err) {
+      console.error(err.stack);
+      res.type('plain/text');
+      res.status(500);
+      res.render('500', { title: '500: SERVER ERROR' });
+  });
+});
+
 app.post('/employee', function (req, res, next) {
   pool.query("INSERT INTO `employee` (`first_name`, `last_name`, `ext`, `lab_id`, `manager_id`) VALUES (?,?,?,?,?)", [req.body.first_name, req.body.last_name, req.body.ext, req.body.lab_id, req.body.manager_id || null], function (err, result) {
     if(err){
