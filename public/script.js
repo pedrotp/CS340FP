@@ -33,7 +33,7 @@ $('div.container').on('click', '.add-button', function (event) {
     url: path + $form.attr('data-type'),
     data: fdata,
     success: function () {
-      $('#labModal').modal('hide');
+      $form.closest('.modal').modal('hide');
     }
   });
 })

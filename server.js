@@ -83,15 +83,19 @@ function selectAll(res, callback){
 };
 
 app.post('/lab', function (req, res, next) {
-  pool.query("INSERT INTO lab (`name`, `ext`) VALUES (?,?)", [req.body.name, req.body.ext], function (err, result) {
-    if(err){
-      next(err);
-      return;
-    }
-    selectAll(res, function() {
-      res.sendStatus(200);
+  if (req.body.name) {
+    pool.query("INSERT INTO lab (`name`, `ext`) VALUES (?,?)", [req.body.name, req.body.ext], function (err, result) {
+      if(err){
+        next(err);
+        return;
+      }
+      selectAll(res, function() {
+        res.sendStatus(200);
+      });
     });
-  });
+  } else {
+    res.sendStatus(400);
+  }
 });
 
 app.delete('/lab', function (req, res, next) {
