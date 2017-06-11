@@ -139,7 +139,9 @@
                 <a href="#"><p class="text-center">See Equipment</p></a>
               </td>
               <td>
+                {{#if this.manager_id}}
                 <a href="#"><p class="text-center">ID# {{this.manager_id}}</p></a>
+                {{/if}}
               </td>
               <td class="buttons">
                   <input class="btn btn-danger" type="button" value="Remove">
