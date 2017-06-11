@@ -48,22 +48,22 @@ $('#employee').on('click', 'button.btn-success', function (event) {
 
       var strings = [];
       for (var i = 0; i < results.length; i++) {
-        strings.push(results[i].first_name + " " + results[i].last_name)
+        strings.push({
+          name: results[i].first_name + " " + results[i].last_name,
+          id: results[i].id
+        });
       }
 
       var employees = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: strings
+        local: strings,
+        identify: function(obj) { return obj.id; }
       });
 
       $('#empModal').find('input[name="manager"]').typeahead({
-        hint: true,
         minLength: 2,
-        highlight: true,
-        display: function (result) {
-          return ;
-        }
+        highlight: true
       },
       {
         name: 'employees',
