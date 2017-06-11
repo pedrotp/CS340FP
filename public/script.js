@@ -29,6 +29,9 @@ $('div.container').on('click', '.add-button', function (event) {
   for (var i = 0; i < farr.length; i++) {
     fdata[farr[i].name] = farr[i].value;
   }
+  if (fdata.manager && autocompleteResults[fdata.manager]) {
+    fdata.manager_id = autocompleteResults[fdata.manager];
+  }
   fdata.lab_id = $form.attr('data-lab-id');
   $.ajax({
     method: 'POST',
