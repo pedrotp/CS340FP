@@ -110,7 +110,7 @@ app.delete('/lab', function (req, res, next) {
 app.get('/employees', function (req, res, next) {
   pool.query('SELECT * FROM `employee` ORDER BY id').then(function (results, fields) {
     res.status(200);
-    res.sendJSON(JSON.stringify(results));
+    res.json(results);
   }).catch(function (err) {
       console.error(err.stack);
       res.type('plain/text');
