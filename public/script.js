@@ -21,7 +21,7 @@ $('#createLab').click(function(event) {
 });
 
 /* Click on any of the Lab cards */
-$('#maindiv').on('click', '.thumbnail', function(event) {
+$('#maindiv').on('click', 'div.thumbnasil', function(event) {
   window.location.href = "/lab/" + $(this).attr('data-id');
   event.preventDefault();
 });

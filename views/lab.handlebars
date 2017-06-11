@@ -1,5 +1,6 @@
 <div class="container">
-  <a href="/"><h1><img height="50px" src="/img/science-book.png" alt="Science Book"> LabBase 3000</h1></a><h2><img height="40px" src="/img/bond.png" alt="Bond"> {{name}}</h2><hr>
+  <a href="/"><h1><img height="50px" src="/img/science-book.png" alt="Science Book"> LabBase 3000</h1></a>
+  <h2><img height="40px" src="/img/bond.png" alt="Bond"> Lab: {{name}}</h2><hr>
   <!-- New Employee Modal -->
   <div class="modal fade" id="empModal" tabindex="-1" role="dialog" aria-labelledby="empModalLabel">
     <div class="modal-dialog" role="document">
@@ -97,11 +98,18 @@
   </div>
 
   <div id="employees">
-    <h3><img height="32px" src="/img/employee.png" alt="Employee"> Employees at {{name}} ({{employees.length}}): </h3>
-    <!-- Button to trigger modal -->
-    <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#empModal">
-      + Add Employee
-    </button>
+    <div class="header">
+      <div class="pull-left">
+        <h3><img height="32px" src="/img/employee.png" alt="Employee"> Employees at {{name}} ({{employees.length}}): </h3>
+      </div>
+      <div class="pull-right">
+        <!-- Button to trigger modal -->
+        <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#empModal">
+          + Add Employee
+        </button>
+      </div>
+      <div class="clearfix"></div>
+    </div>
     <hr>
     {{#if employees.length}}
       <table class="table table-bordered table-condensed table-striped table-responsive">

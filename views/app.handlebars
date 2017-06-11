@@ -1,5 +1,13 @@
 <div class="container">
-  <h1><img height="50px" src="/img/science-book.png" alt="Science Book"> LabBase 3000</h1>
+  <div class="header">
+    <div class="pull-left">
+      <h1><img height="50px" src="/img/science-book.png" alt="Science Book"> LabBase 3000</h1>
+    </div>
+    <div class="pull-right">
+      <button type="button" name="button">View Projects</button>
+    </div>
+    <div class="clearfix"></div>
+  </div>
   <!-- Modal -->
   <div class="modal fade" id="labModal" tabindex="-1" role="dialog" aria-labelledby="labModalLabel">
     <div class="modal-dialog" role="document">
@@ -31,6 +39,10 @@
 
   <div id="maindiv">
     {{#if labs.length}}
+    <div class="alert alert-info alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <strong>Note:</strong> Click on any lab below to see details, or click on 'View Projects' above to see all active projects.
+    </div>
     <div class="row">
       {{#each labs}}
         <div class="col-sm-6 col-md-4">
