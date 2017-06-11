@@ -1,4 +1,4 @@
-<div class="container" data-lab-id="{{lab_id}}">
+<div class="container">
   <div>
     <div class="pull-left">
       <a href="/"><h1><img height="50px" src="/img/science-book.png" alt="Science Book"> LabBase 3000</h1></a>
@@ -9,6 +9,28 @@
     <div class="clearfix"></div>
   </div>
   <hr>
+
+  <!-- New Employee Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Delete This Lab?</h4>
+        </div>
+        <div class="modal-body">
+          <div class="alert alert-danger" role="alert">
+            <strong>Warning:</strong> Deleting this lab will also delete all employees and equipment associated with it. Are you sure you want to proceed?
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button id="delete-lab-button" data-lab-id="{{lab_id}}" type="button" class="btn btn-danger">DELETE LAB</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- New Employee Modal -->
   <div class="modal fade" id="empModal" tabindex="-1" role="dialog" aria-labelledby="empModalLabel">
     <div class="modal-dialog" role="document">
@@ -117,7 +139,6 @@
                 <p class="text-center table-link">See Equipment</p>
               </td>
               <td class="buttons">
-                  <input class="btn btn-default" type="button" value="Update">
                   <input class="btn btn-danger" type="button" value="Remove">
               </td>
             </tr>
@@ -166,7 +187,6 @@
                 <p class="text-center table-link">Used in...</p>
               </td>
               <td class="buttons">
-                  <input class="btn btn-default" type="button" value="Update">
                   <input class="btn btn-danger" type="button" value="Remove">
               </td>
             </tr>
@@ -176,6 +196,13 @@
       <h3 class="text-center">There is no equipment in this lab</h3>
     {{/if}}
 
+  </div>
+  <hr>
+  <div>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-lg btn-block btn-danger" data-toggle="modal" data-target="#deleteModal">
+      Delete This Lab
+    </button>
   </div>
   <hr>
 </div>

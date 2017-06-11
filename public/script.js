@@ -43,18 +43,20 @@ $('#maindiv').on('click', 'div.thumbnail', function(event) {
   event.preventDefault();
 });
 
-// delete lab:
-// var fdata = {};
-// fdata.id = $(this).attr('data-id');
-// $this = $(this);
-// $.ajax({
-//   method: 'DELETE',
-//   url: path + 'lab',
-//   data: fdata,
-//   success: function () {
-//     $this.parent().remove();
-//   }
-// });
+/* Click on the delete lab button */
+$('#delete-lab-button').click(function (event) {
+  var fdata = {};
+  fdata.id = $(this).attr('data-lab-id');
+  $this = $(this);
+  $.ajax({
+    method: 'DELETE',
+    url: path + 'lab',
+    data: fdata,
+    success: function () {
+      window.location.href = path;
+    }
+  });
+});
 
 /* Press any of the delete buttons */
 $('.container').on('click', 'input[type="button"][value="Remove"]', function (event) {
