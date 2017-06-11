@@ -142,10 +142,10 @@ $('#eqModal').on('click','div.new-type', function (event) {
   $.ajax({
     method: 'POST',
     url: path + 'equipment-type',
-    data: { name: eqname },
+    data: { name: eqName },
     success: function (id) {
       $('#eqModal').find('input[name="equipment_type"]').typeahead('destroy');
-      equipmentTypes[eqname] = id[0];
+      equipmentTypes[eqName] = id[0];
       // $('#eqModal').find('input[name="equipment_type"]').prop('disabled',true);
     }
   });
