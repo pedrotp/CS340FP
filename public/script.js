@@ -58,7 +58,7 @@ $('div.container').on('click', '.add-button', function (event) {
     fdata.mantainer_id = employeeNames[fdata.mantainer];
   }
   if (fdata.equipment_type && equipmentTypes[fdata.equipment_type]) {
-      fdata.equipment_id = equipmentTypes[fdata.equipment_type];
+      fdata.type_id = equipmentTypes[fdata.equipment_type];
   }
 
   fdata.lab_id = $form.attr('data-lab-id');
