@@ -14,6 +14,16 @@ $.ajax({
   }
 });
 
+$.ajax({
+  method: 'GET',
+  url: path + 'equipment-type',
+  success: function (results) {
+    for (var i = 0; i < results.length; i++) {
+      equipmentTypes[results[i].name] = results[i].id;
+    }
+  }
+});
+
 /* Submit the 'add lab form' in the modal */
 $('#createLab').click(function(event) {
   var fdata = {};
@@ -33,7 +43,7 @@ $('#createLab').click(function(event) {
   event.preventDefault();
 });
 
-/* Click any of the add buttons in the modals */
+/* Click any of the add buttons inside the modals */
 $('div.container').on('click', '.add-button', function (event) {
   var fdata = {};
   var $form = $($($(this).closest('div.modal-content')).find('form')[0]);
@@ -44,6 +54,13 @@ $('div.container').on('click', '.add-button', function (event) {
   if (fdata.manager && employeeNames[fdata.manager]) {
     fdata.manager_id = employeeNames[fdata.manager];
   }
+  if (fdata.mantainer && employeeNames[fdata.mantainer]) {
+    fdata.mantainer_id = employeeNames[fdata.mantainer];
+  }
+  if (fdata.equipment_type && equipmentTypes[fdata.equipment_type]) {
+      fdata.equipment_id = equipmentTypes[fdata.equipment_type];
+  }
+
   fdata.lab_id = $form.attr('data-lab-id');
   $.ajax({
     method: 'POST',
@@ -55,38 +72,68 @@ $('div.container').on('click', '.add-button', function (event) {
   });
 });
 
+/* Click on the Add New Employee Button */
 $('#employee').on('click', 'button.btn-success', function (event) {
 
-  $.ajax({
-    method: 'GET',
-    url: path + 'employees',
-    success: function (results) {
+  var strings = Object.keys(employeeNames);
 
-      var strings = Object.keys(employeeNames);
-      // var tuples = {};
-      // for (var i = 0; i < results.length; i++) {
-      //   strings.push(results[i].first_name + " " + results[i].last_name);
-      //   tuples[results[i].first_name + " " + results[i].last_name] = results[i].id;
-      // }
-      // autocompleteResults = tuples;
-
-      var employees = new Bloodhound({
-        datumTokenizer: Bloodhound.tokenizers.whitespace,
-        queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: strings
-      });
-
-      $('#empModal').find('input[name="manager"]').typeahead({
-        minLength: 2,
-        highlight: true
-      },
-      {
-        name: 'employees',
-        source: employees,
-        async: true
-      });
-    }
+  var employees = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local: strings
   });
+
+  $('#empModal').find('input[name="manager"]').typeahead({
+    minLength: 2,
+    highlight: true
+  },
+  {
+    name: 'employees',
+    source: employees
+  });
+
+});
+
+/* Click on the Add New Equipment Button */
+$('#equipment').on('click', 'button.btn-success', function (event) {
+
+  var empstr = Object.keys(employeeNames);
+
+  var employees = new Bloodhound({
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local: empstr
+  });
+
+  var eqstr = Object.keys(equipmentTypes);
+
+  var equipment = new Bloodhound({
+      datumTokenizer: Bloodhound.tokenizers.whitespace,
+      queryTokenizer: Bloodhound.tokenizers.whitespace,
+      local: eqstr,
+      templates: {
+        empty: '<a href="#"><strong>Add New Type</strong></a>'
+      }
+    });
+
+  $('#eqModal').find('input[name="mantainer"]').typeahead({
+    minLength: 2,
+    highlight: true
+  },
+  {
+    name: 'employees',
+    source: employees
+  });
+
+  $('#eqModal').find('input[name="equipment-type"]').typeahead({
+    minLength: 2,
+    highlight: true
+  },
+  {
+    name: 'equipment',
+    source: equipment
+  });
+
 });
 
 /* Click on any of the Lab cards */
