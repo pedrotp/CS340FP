@@ -1,5 +1,7 @@
 var path = 'http://flip3.engr.oregonstate.edu:19469/';
 
+var autocompleteResults = {};
+
 /* Submit the 'add lab form' in the modal */
 $('#createLab').click(function(event) {
   var fdata = {};
@@ -47,18 +49,17 @@ $('#employee').on('click', 'button.btn-success', function (event) {
       console.log(results);
 
       var strings = [];
+      var tuples = {};
       for (var i = 0; i < results.length; i++) {
-        strings.push({
-          name: results[i].first_name + " " + results[i].last_name,
-          id: results[i].id
-        });
+        strings.push(results[i].first_name + " " + results[i].last_name);
+        tuples[results[i].first_name + " " + results[i].last_name] = results[i].id;
       }
+      autocompleteResults = tuples;
 
       var employees = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: strings,
-        identify: function(obj) { return obj.id; }
+        local: strings
       });
 
       $('#empModal').find('input[name="manager"]').typeahead({
@@ -68,8 +69,7 @@ $('#employee').on('click', 'button.btn-success', function (event) {
       {
         name: 'employees',
         source: employees,
-        async: true,
-
+        async: true
       });
     }
   })
