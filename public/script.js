@@ -22,8 +22,8 @@ $('#createLab').click(function(event) {
 
 $('div.container').on('click', '.add-button', function (event) {
   var fdata = {};
-  var $form = $($(this).closest('div.modal-content')).find('form')[0];
-  var farr = $($form).serializeArray();
+  var $form = $($($(this).closest('div.modal-content')).find('form')[0]);
+  var farr = $form.serializeArray();
   for (var i = 0; i < farr.length; i++) {
     fdata[farr[i].name] = farr[i].value;
   }
