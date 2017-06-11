@@ -33,12 +33,37 @@ app.set('view engine', 'handlebars');
 app.set('port', port);
 
 app.get('/', function(req,res){
-  sendResults(res, function(context) {
+  selectAll(res, function(context) {
     res.render('app', context);
   });
 });
 
-function sendResults(res, callback){
+app.get('/lab/:id', function(req,res){
+  var context = {};
+  pool.query('SELECT name FROM `lab` WHERE id=?', [req.params.id]).then(function (results, fields) {
+    context.name = results[0];
+  }).then(function () {
+    return pool.query('SELECT * FROM `employee` WHERE lab_id=? ORDER BY id',[req.params.id]);
+  }).then(function (results, fields) {
+    context.employees = results;
+  }).then(function() {
+    return pool.query('SELECT * FROM `project` WHERE lab_id=? ORDER BY id',[req.params.id]);
+  }).then(function (results, fields) {
+    context.projects = results;
+  }).then(function() {
+    return pool.query('SELECT * FROM `equipment` WHERE lab_id=? ORDER BY id',[req.params.id]);
+  }).then(function (results, fields) {
+    context.equipment = results;
+  }).catch(function (err) {
+      console.error(err.stack);
+      res.type('plain/text');
+      res.status(500);
+      res.render('500', { title: '500: SERVER ERROR' });
+  });
+  res.render('lab', context);
+});
+
+function selectAll(res, callback){
   pool.query('SELECT * FROM `lab` ORDER BY id').then(function (results, fields) {
     var context = {};
     context.labs = results;
@@ -57,7 +82,7 @@ app.post('/lab', function (req, res, next) {
       next(err);
       return;
     }
-    sendResults(res, function() {
+    selectAll(res, function() {
       res.sendStatus(200);
     });
   });
