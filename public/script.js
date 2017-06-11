@@ -130,7 +130,21 @@ $('#equipment').on('click', 'button.btn-success', function (event) {
     name: 'equipment',
     source: equipment,
     templates: {
-      empty: '<div class="tt-suggestion tt-selectable"><a href="#"><strong>Add New Type</strong></a></div>'
+      empty: '<div class="tt-suggestion tt-selectable new-type"><a href="#"><strong>Add New Type</strong></a></div>'
+    }
+  });
+
+});
+
+$('#eqModal').on('click','div.new-type', function (event) {
+
+  $.ajax({
+    method: 'POST',
+    url: path + 'equipment-type',
+    data: { name: $('#eqModal').find('input[name="equipment_type"]').typeahead('val') },
+    success: function () {
+      $('#eqModal').find('input[name="equipment_type"]').typeahead('destroy');
+      // $('#eqModal').find('input[name="equipment_type"]').prop('disabled',true);
     }
   });
 

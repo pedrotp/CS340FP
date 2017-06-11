@@ -153,6 +153,19 @@ app.get('/equipment-type', function (req, res, next) {
   });
 });
 
+app.post('/equipment-type', function (req, res, next) {
+
+  pool.query("INSERT INTO `equipment-type` (`name`) VALUES (?)", [req.body.name], function (err, result) {
+    if(err){
+      next(err);
+      return;
+    }
+    selectAll(res, function() {
+      res.sendStatus(200);
+    });
+  });
+});
+
 app.post('/equipment', function (req, res, next) {
 
   pool.query("INSERT INTO `equipment` (`type_id`, `lab_id`, `maintainer_id`, `calibration_date`, `purchase_date`) VALUES (?,?,?,?,?)", [req.body.type_id, req.body.lab_id, req.body.maintainer_id, req.body.calibration_date, req.body.purchase_date], function (err, result) {
