@@ -46,10 +46,15 @@ $('#employee').on('click', 'button.btn-success', function (event) {
     success: function (results) {
       console.log(results);
 
+      var strings = [];
+      for (var i = 0; i < results.length; i++) {
+        strings.push(results[i].first_name + " " + results[i].last_name)
+      }
+
       var employees = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        local: results
+        local: strings
       });
 
       $('#empModal').find('input[name="manager"]').typeahead({
@@ -57,7 +62,7 @@ $('#employee').on('click', 'button.btn-success', function (event) {
         minLength: 2,
         highlight: true,
         display: function (result) {
-          return result.first_name + " " + result.last_name;
+          return ;
         }
       },
       {
