@@ -110,10 +110,7 @@ $('#equipment').on('click', 'button.btn-success', function (event) {
   var equipment = new Bloodhound({
     datumTokenizer: Bloodhound.tokenizers.whitespace,
     queryTokenizer: Bloodhound.tokenizers.whitespace,
-    local: eqstr,
-    templates: {
-      empty: '<a href="#"><strong>Add New Type</strong></a>'
-    }
+    local: eqstr
   });
 
   $('#eqModal').find('input[name="maintainer"]').typeahead({
@@ -131,7 +128,10 @@ $('#equipment').on('click', 'button.btn-success', function (event) {
   },
   {
     name: 'equipment',
-    source: equipment
+    source: equipment,
+    templates: {
+      empty: '<a href="#"><strong>Add New Type</strong></a>'
+    }
   });
 
 });
