@@ -18,6 +18,7 @@ $.ajax({
   method: 'GET',
   url: path + 'equipment-type',
   success: function (results) {
+    console.log('results\n', results);
     for (var i = 0; i < results.length; i++) {
       equipmentTypes[results[i].name] = results[i].id;
     }
@@ -108,13 +109,13 @@ $('#equipment').on('click', 'button.btn-success', function (event) {
   var eqstr = Object.keys(equipmentTypes);
 
   var equipment = new Bloodhound({
-      datumTokenizer: Bloodhound.tokenizers.whitespace,
-      queryTokenizer: Bloodhound.tokenizers.whitespace,
-      local: eqstr,
-      templates: {
-        empty: '<a href="#"><strong>Add New Type</strong></a>'
-      }
-    });
+    datumTokenizer: Bloodhound.tokenizers.whitespace,
+    queryTokenizer: Bloodhound.tokenizers.whitespace,
+    local: eqstr,
+    templates: {
+      empty: '<a href="#"><strong>Add New Type</strong></a>'
+    }
+  });
 
   $('#eqModal').find('input[name="mantainer"]').typeahead({
     minLength: 2,
