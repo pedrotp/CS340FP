@@ -142,7 +142,7 @@ app.delete('/employee', function (req, res, next) {
 });
 
 app.get('/equipment-type', function (req, res, next) {
-  pool.query('SELECT * FROM `equipment-type` ORDER BY id').then(function (results, fields) {
+  pool.query('SELECT * FROM `equipment_type` ORDER BY id').then(function (results, fields) {
     res.status(200);
     res.json(results);
   }).catch(function (err) {
