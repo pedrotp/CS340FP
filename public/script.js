@@ -44,6 +44,8 @@ $('#employee').on('click', 'button.btn-success', function (event) {
     method: 'GET',
     url: path + 'employees',
     success: function (results) {
+      console.log(results);
+
       var employees = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,
         queryTokenizer: Bloodhound.tokenizers.whitespace,
