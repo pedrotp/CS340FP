@@ -55,11 +55,16 @@ $('#employee').on('click', 'button.btn-success', function (event) {
       $('#empModal').find('input[name="manager"]').typeahead({
         hint: true,
         minLength: 2,
-        highlight: true
+        highlight: true,
+        display: function (result) {
+          return result.first_name + " " + result.last_name;
+        }
       },
       {
         name: 'employees',
-        source: employees
+        source: employees,
+        async: true,
+
       });
     }
   })
