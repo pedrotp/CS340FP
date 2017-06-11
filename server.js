@@ -109,7 +109,7 @@ app.delete('/lab', function (req, res, next) {
 });
 
 app.post('/employee', function (req, res, next) {
-  pool.query("INSERT INTO `employee` (`first_name`, `last_name`, `ext`, `lab_id`, `manager_id`) VALUES (?,?,?,?,?)", [req.body.first_name, req.body.last_name, req.body.ext, req.body.lab_id, req.body.manager_id || NULL], function (err, result) {
+  pool.query("INSERT INTO `employee` (`first_name`, `last_name`, `ext`, `lab_id`, `manager_id`) VALUES (?,?,?,?,?)", [req.body.first_name, req.body.last_name, req.body.ext, req.body.lab_id, req.body.manager_id || null], function (err, result) {
     if(err){
       next(err);
       return;

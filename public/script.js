@@ -11,7 +11,7 @@ $('#createLab').click(function(event) {
     data: fdata,
     success: function () {
       // location.reload();
-      var newThumb = $('<div class="col-sm-6 col-md-4"><div data-id="{{this.id}}" class="thumbnail"><img height="50px" width="50px" src="/img/bond.png" alt="Bond"><div class="caption"><h4 class="text-center">'
+      var newThumb = $('<div class="col-sm-6 col-md-4"><div data-id="' + {{this.id}} + '" class="thumbnail"><img height="50px" width="50px" src="/img/bond.png" alt="Bond"><div class="caption"><h4 class="text-center">'
       + fdata.name + '</h4><p class="text-center">( ext: ' + fdata.ext + ' )</p></div></div></div>');
       $('#maindiv div.row').append(newThumb);
       $('#labModal').modal('hide');
