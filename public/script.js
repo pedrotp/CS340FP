@@ -20,13 +20,22 @@ $('#createLab').click(function(event) {
   event.preventDefault();
 });
 
-$('div.labs').on('click', '.add-button', function (event) {
+$('div.container').on('click', '.add-button', function (event) {
   var fdata = {};
-  var farr = $(this).closest('div.modal-content')[0].find('form')[0].serializeArray();
+  var $form = $($(this).closest('div.modal-content')).find('form')[0];
+  var farr = $($form).serializeArray();
   for (var i = 0; i < farr.length; i++) {
     fdata[farr[i].name] = farr[i].value;
   }
-  console.log(fdata);
+  fdata.lab_id = $form.attr('data-lab-id');
+  $.ajax({
+    method: 'POST',
+    url: path + $form.attr('data-type'),
+    data: fdata,
+    success: function () {
+      $('#labModal').modal('hide');
+    }
+  });
 })
 
 /* Click on any of the Lab cards */

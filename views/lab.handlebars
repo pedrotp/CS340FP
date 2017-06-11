@@ -1,4 +1,4 @@
-<div class="container labs">
+<div class="container" data-lab-id="{{lab_id}}">
   <div>
     <div class="pull-left">
       <a href="/"><h1><img height="50px" src="/img/science-book.png" alt="Science Book"> LabBase 3000</h1></a>
@@ -18,18 +18,22 @@
           <h4 class="modal-title" id="empModalLabel">Add new employee</h4>
         </div>
         <div class="modal-body">
-          <form class="form-inline">
+          <form class="form-inline" data-type="employee" data-lab-id="{{lab_id}}">
             <div class="form-group">
-              <label class="sr-only" for="name-field">First Name</label>
-              <input type="text" class="form-control" name="empFName" placeholder="First Name">
+              <label class="sr-only" for="first_name">First Name</label>
+              <input type="text" class="form-control" name="first_name" placeholder="First Name">
             </div>
             <div class="form-group">
-              <label class="sr-only" for="name-field">Last Name</label>
-              <input type="text" class="form-control" name="empLName" placeholder="Last Name">
+              <label class="sr-only" for="last_name">Last Name</label>
+              <input type="text" class="form-control" name="last_name" placeholder="Last Name">
             </div>
             <div class="form-group">
-              <label class="sr-only" for="ext-field">Extension #</label>
-              <input type="text" class="form-control" name="empExt" placeholder="Extension #">
+              <label class="sr-only" for="ext">Extension #</label>
+              <input type="text" class="form-control" name="ext" placeholder="Extension #">
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="manager">Manager Name</label>
+              <input type="text" class="form-control" name="manager" placeholder="Select Manager">
             </div>
           </form>
         </div>
@@ -50,22 +54,22 @@
           <h4 class="modal-title" id="projModalLabel">Create New Project</h4>
         </div>
         <div class="modal-body">
-          <form>
+          <form data-lab-id="{{lab_id}}" data-type="project">
             <div class="form-group">
               <label for="name-field">Project Name</label>
-              <input type="text" class="form-control" name="projName" placeholder="Name">
+              <input type="text" class="form-control" name="name" placeholder="Name">
             </div>
             <div class="form-group">
               <label for="ext-field">Start Date</label>
-              <input type="date" class="form-control" name="projStartDate" placeholder="Start Date">
+              <input type="date" class="form-control" name="start_date" placeholder="Start Date">
             </div>
             <div class="form-group">
               <label for="ext-field">Due Date</label>
-              <input type="date" class="form-control" name="projDueDate" placeholder="Due Date">
+              <input type="date" class="form-control" name="due_date" placeholder="Due Date">
             </div>
             <div class="form-group">
               <label for="ext-field">Objective</label>
-              <textarea class="form-control" name="projObjective" rows="2" placeholder="Project Objective"></textarea>
+              <textarea class="form-control" name="objective" rows="2" placeholder="Objective"></textarea>
             </div>
           </form>
         </div>
@@ -86,7 +90,7 @@
           <h4 class="modal-title" id="labModalLabel">Add Equipment</h4>
         </div>
         <div class="modal-body">
-          <form>
+          <form data-lab-id="{{lab_id}}" data-type="equipment">
             <div class="form-group">
               <label for="type-field">Equipment Type</label>
               <input type="text" data-provide="typeahead" autocomplete="off" class="form-control eqtype" name="type-field" placeholder="Enter Type">
