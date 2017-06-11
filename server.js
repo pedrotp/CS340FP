@@ -47,16 +47,11 @@ app.get('/lab/:id', function(req,res){
     return pool.query('SELECT * FROM `employee` WHERE lab_id=? ORDER BY id',[req.params.id]);
   }).then(function (results, fields) {
     context.employees = results;
-  })
-  .then(function() {
-    return pool.query('SELECT * FROM `project` WHERE id NOT IN (SELECT DISTINCT project.id FROM `project` INNER JOIN `employee_project` ON project.id = employee_project.project_id INNER JOIN `employee` ON employee_project.employee_id = employee.id WHERE employee.lab_id=?)',[req.params.id]);
-  }).then(function (results, fields) {
-    context.projects = results;
-  })
-  .then(function() {
+  }).then(function() {
     return pool.query('SELECT * FROM `equipment` WHERE lab_id=? ORDER BY id',[req.params.id]);
   }).then(function (results, fields) {
     context.equipment = results;
+    console.log('eq: ', results);
   }).then(function () {
     res.render('lab', context);
   }).catch(function (err) {
