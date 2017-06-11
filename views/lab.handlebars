@@ -32,8 +32,8 @@
               <input type="text" class="form-control" name="ext" placeholder="Extension #">
             </div>
             <div class="form-group">
-              <label for="manager">Manager Name</label>
-              <input type="text" class="form-control" name="manager" placeholder="Select Manager">
+              <label for="manager">Manager Name (Optional)</label>
+              <input type="text" data-provide="typeahead" autocomplete="off" class="form-control" name="manager" placeholder="Manager Name">
             </div>
           </form>
         </div>
@@ -56,19 +56,19 @@
         <div class="modal-body">
           <form data-lab-id="{{lab_id}}" data-type="equipment">
             <div class="form-group">
-              <label for="type-field">Equipment Type</label>
-              <input type="text" data-provide="typeahead" autocomplete="off" class="form-control eqtype" name="type-field" placeholder="Enter Type">
+              <label for="equipment_type">Equipment Type</label>
+              <input type="text" data-provide="typeahead" autocomplete="off" class="form-control" name="equipment_type" placeholder="Enter Type">
             </div>
             <div class="form-group">
-              <label for="maintainer-field">Maintainer</label>
-              <input type="text" data-provide="typeahead" autocomplete="off" class="form-control maintainer" name="maintainer-field" placeholder="Employee Name">
+              <label for="maintainer">Maintainer</label>
+              <input type="text" data-provide="typeahead" autocomplete="off" class="form-control" name="maintainer" placeholder="Employee Name">
             </div>
             <div class="form-group">
-              <label for="pdate-field">Purchase Date</label>
+              <label for="purchase_date">Purchase Date</label>
               <input type="date" class="form-control" name="pdate-field">
             </div>
             <div class="form-group">
-              <label for="cdate-field">Calibration Date</label>
+              <label for="calibration_date">Calibration Date</label>
               <input type="date" class="form-control" name="cdate-field">
             </div>
           </form>

@@ -152,6 +152,19 @@ app.delete('/equipment', function (req, res, next) {
   });
 });
 
+app.get('/projects', function (req, res, next) {
+  pool.query('SELECT * FROM `project` ORDER BY id').then(function (results, fields) {
+    var context = {};
+    context.projects = results;
+    res.render(projects, context);
+  }).catch(function (err) {
+      console.error(err.stack);
+      res.type('plain/text');
+      res.status(500);
+      res.render('500', { title: '500: SERVER ERROR' });
+  });
+});
+
 app.post('/project', function (req, res, next) {
   pool.query("INSERT INTO `project` (`name`, `start_date`, `due_date`, `objective`) VALUES (?,?,?,?)", [req.body.name, req.body.start_date, req.body.due_date, req.body.objective], function (err, result) {
     if(err){
