@@ -108,7 +108,7 @@
   <div id="employees">
     <div>
       <div class="pull-left">
-        <h3><img height="32px" src="/img/employee.png" alt="Employee"> Employees at {{name}} ({{employees.length}}): </h3>
+        <h3><img height="32px" src="/img/employee.png" alt="Employee"> Employees at {{name}}: </h3>
       </div>
       <div class="pull-right">
         <!-- Button to trigger modal -->
@@ -155,11 +155,18 @@
   <hr>
 
   <div id="projects">
-    <h3><img height="32px" src="/img/project.png" alt="Project"> Projects at {{name}} ({{projects.length}}):</h3>
-    <!-- Button to trigger modal -->
-    <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#projModal">
-      + Add Project
-    </button>
+    <div>
+      <div class="pull-left">
+        <h3><img height="32px" src="/img/project.png" alt="Project"> Projects at {{name}}:</h3>
+      </div>
+      <div class="pull-right">
+        <!-- Button to trigger modal -->
+        <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#projModal">
+          + Add Project
+        </button>
+      </div>
+      <div class="clearfix"></div>
+    </div>
     <hr>
     {{#if projects.length}}
       <table class="table table-bordered table-condensed table-striped table-responsive">
@@ -200,11 +207,18 @@
   <hr>
 
   <div id="equipment">
-    <h3><img height="32px" src="/img/equipment.png" alt="Equipment"> Equipment at {{name}} ({{equipment.length}}):</h3>
-    <!-- Button to trigger modal -->
-    <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#eqModal">
-      + Add Equipment
-    </button>
+    <div>
+      <div class="pull-left">
+        <h3><img height="32px" src="/img/equipment.png" alt="Equipment"> Equipment at {{name}}:</h3>
+      </div>
+      <div class="pull-right">
+        <!-- Button to trigger modal -->
+        <button type="button" class="btn btn-success pull-right" data-toggle="modal" data-target="#eqModal">
+          + Add Equipment
+        </button>
+      </div>
+      <div class="clearfix"></div>
+    </div>
     <hr>
     {{#if equipment.length}}
       <table class="table table-bordered table-condensed table-striped table-responsive">

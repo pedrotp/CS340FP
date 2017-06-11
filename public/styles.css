@@ -20,3 +20,8 @@ div.thumbnail:hover {
 .pull-left h3 {
   margin: 0;
 }
+
+.pull-right button {
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
