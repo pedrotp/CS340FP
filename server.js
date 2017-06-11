@@ -156,7 +156,7 @@ app.get('/projects', function (req, res, next) {
   pool.query('SELECT * FROM `project` ORDER BY id').then(function (results, fields) {
     var context = {};
     context.projects = results;
-    res.render(projects, context);
+    res.render('projects', context);
   }).catch(function (err) {
       console.error(err.stack);
       res.type('plain/text');
