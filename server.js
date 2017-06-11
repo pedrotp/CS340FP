@@ -89,7 +89,7 @@ app.post('/lab', function (req, res, next) {
       }
       selectAll(res, function() {
         res.status(200);
-        res.send(result.insertId);
+        res.send([result.insertId]);
       });
     });
   } else {
