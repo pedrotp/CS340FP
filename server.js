@@ -41,11 +41,13 @@ app.get('/', function(req,res){
 app.get('/lab/:id', function(req,res){
   var context = {};
   pool.query('SELECT name FROM `lab` WHERE id=?', [req.params.id]).then(function (results, fields) {
+    console.log("name: ",results);
     context.name = results[0];
     context.projects = [];
   }).then(function () {
     return pool.query('SELECT * FROM `employee` WHERE lab_id=? ORDER BY id',[req.params.id]);
   }).then(function (results, fields) {
+    console.log("emp: ", results);
     context.employees = results;
   })
   // .then(function() {
@@ -56,6 +58,7 @@ app.get('/lab/:id', function(req,res){
   .then(function() {
     return pool.query('SELECT * FROM `equipment` WHERE lab_id=? ORDER BY id',[req.params.id]);
   }).then(function (results, fields) {
+    console.log("equipment: ", results)
     context.equipment = results;
   }).then(function () {
     res.render('lab', context);
