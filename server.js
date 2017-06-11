@@ -89,9 +89,9 @@ app.post('/lab', function (req, res, next) {
         next(err);
         return;
       }
-      console.log('lab created!',result);
       selectAll(res, function() {
-        res.sendStatus(200);
+        res.status(200);
+        res.send(result.insertId);
       });
     });
   } else {
