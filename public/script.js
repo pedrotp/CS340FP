@@ -57,7 +57,7 @@ $('#maindiv').on('click', 'div.thumbnail', function(event) {
 // });
 
 /* Press any of the delete buttons */
-$('#maindiv').on('click', 'input[type="button"][value="Remove"]', function (event) {
+$('.container').on('click', 'input[type="button"][value="Remove"]', function (event) {
   var $tr = $(this).closest('tr');
   var id = $tr.find('input[type="hidden"][name="id"]').val();
 
