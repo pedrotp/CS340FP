@@ -50,11 +50,11 @@ app.get('/lab/:id', function(req,res){
     console.log("emp: ", results);
     context.employees = results;
   })
-  // .then(function() {
-  //   return pool.query('SELECT  FROM `project` INNER JOIN `employee_project` ON project.id = employee_project.project_id INNER JOIN `employee` ON employee_project.employee_id = employee.id WHERE employee.lab_id=? ORDER BY id',[req.params.id]);
-  // }).then(function (results, fields) {
-  //   context.projects = results;
-  // })
+  .then(function() {
+    return pool.query('SELECT * FROM `project` WHERE id NOT IN (SELECT DISTINCT project.id FROM `project` INNER JOIN `employee_project` ON project.id = employee_project.project_id INNER JOIN `employee` ON employee_project.employee_id = employee.id WHERE employee.lab_id=?)',[req.params.id]);
+  }).then(function (results, fields) {
+    context.projects = results;
+  })
   .then(function() {
     return pool.query('SELECT * FROM `equipment` WHERE lab_id=? ORDER BY id',[req.params.id]);
   }).then(function (results, fields) {
@@ -97,6 +97,73 @@ app.post('/lab', function (req, res, next) {
 
 app.delete('/lab', function (req, res, next) {
   pool.query("DELETE FROM lab WHERE id=?", [req.body.id], function (err, result) {
+    if(err){
+      next(err);
+      return;
+    }
+    res.sendStatus(200);
+  });
+});
+
+app.post('/employee', function (req, res, next) {
+  pool.query("INSERT INTO `employee` (`first_name`, `last_name`, `ext`, `lab_id`, `manager_id`) VALUES (?,?)", [req.body.fname, req.body.lname, req.body.ext, req.body.lab_id, req.body.manager_id], function (err, result) {
+    if(err){
+      next(err);
+      return;
+    }
+    selectAll(res, function() {
+      res.sendStatus(200);
+    });
+  });
+});
+
+app.delete('/employee', function (req, res, next) {
+  pool.query("DELETE FROM `employee` WHERE id=?", [req.body.id], function (err, result) {
+    if(err){
+      next(err);
+      return;
+    }
+    res.sendStatus(200);
+  });
+});
+
+app.post('/equipment', function (req, res, next) {
+
+  pool.query("INSERT INTO `equipment` (`type_id`, `lab_id`, `maintainer_id`, `calibration_date`, `purchase_date`) VALUES (?,?,?,?,?)", [req.body.type_id, req.body.lab_id, req.body.maintainer_id, req.body.calibration_date, req.body.purchase_date], function (err, result) {
+    if(err){
+      next(err);
+      return;
+    }
+    selectAll(res, function() {
+      res.sendStatus(200);
+    });
+  });
+});
+
+app.delete('/equipment', function (req, res, next) {
+  pool.query("DELETE FROM `equipment` WHERE id=?", [req.body.id], function (err, result) {
+    if(err){
+      next(err);
+      return;
+    }
+    res.sendStatus(200);
+  });
+});
+
+app.post('/project', function (req, res, next) {
+  pool.query("INSERT INTO `project` (`name`, `start_date`, `due_date`, `objective`) VALUES (?,?)", [req.body.name, req.body.start_date, req.body.due_date, req.body.objective], function (err, result) {
+    if(err){
+      next(err);
+      return;
+    }
+    selectAll(res, function() {
+      res.sendStatus(200);
+    });
+  });
+});
+
+app.delete('/project', function (req, res, next) {
+  pool.query("DELETE FROM `project` WHERE id=?", [req.body.id], function (err, result) {
     if(err){
       next(err);
       return;

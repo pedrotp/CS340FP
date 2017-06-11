@@ -46,7 +46,7 @@ CREATE TABLE `equipment` (
   `lab_id` int(11) NOT NULL,
   `maintainer_id` int(11) DEFAULT NULL,
   `calibration_date` date,
-  `purchase date` date,
+  `purchase_date` date,
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_equipment_type`
     FOREIGN KEY (`type_id`)
@@ -67,7 +67,8 @@ CREATE TABLE `equipment` (
 
 CREATE TABLE `project` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `request_date` date,
+  `name` varchar(255) NOT NULL,
+  `start_date` date,
   `due_date` date,
   `objective` text,
   PRIMARY KEY (`id`)
