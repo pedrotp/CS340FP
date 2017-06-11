@@ -1,9 +1,18 @@
 td, th {
-  width: 16.5%;
+  width: 15%;
+}
+
+#equipment td, #equipment th {
+  width: 22%;
 }
 
 td.buttons, th.buttons {
-  width: 17.5%;
+  width: 10%;
+  margin: auto;
+}
+
+#equipment td.buttons, #equipment th.buttons {
+  width: 12%;
   margin: auto;
 }
 

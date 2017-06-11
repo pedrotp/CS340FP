@@ -36,7 +36,32 @@ $('div.container').on('click', '.add-button', function (event) {
       $form.closest('.modal').modal('hide');
     }
   });
-})
+});
+
+$('#employee').on('click', 'button.btn-success', function (event) {
+
+  $.ajax({
+    method: 'GET',
+    url: path + 'employees',
+    success: function (results) {
+      var employees = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: results
+      });
+
+      $('#empModal')find('input[name="manager"]').typeahead({
+        hint: true,
+        minLength: 2,
+        highlight: true
+      },
+      {
+        name: 'employees',
+        source: employees
+      });
+    }
+  })
+});
 
 /* Click on any of the Lab cards */
 $('#maindiv').on('click', 'div.thumbnail', function(event) {
