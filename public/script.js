@@ -20,6 +20,15 @@ $('#createLab').click(function(event) {
   event.preventDefault();
 });
 
+$('div.labs').on('click', '.add-button', function (event) {
+  var fdata = {};
+  var farr = $(this).closest('div.modal-content')[0].find('form')[0].serializeArray();
+  for (var i = 0; i < farr.length; i++) {
+    fdata[farr[i].name] = farr[i].value;
+  }
+  console.log(fdata);
+})
+
 /* Click on any of the Lab cards */
 $('#maindiv').on('click', 'div.thumbnail', function(event) {
   window.location.href = "/lab/" + $(this).attr('data-id');
