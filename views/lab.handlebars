@@ -1,6 +1,14 @@
 <div class="container">
-  <a href="/"><h1><img height="50px" src="/img/science-book.png" alt="Science Book"> LabBase 3000</h1></a>
-  <h2><img height="40px" src="/img/bond.png" alt="Bond"> Lab: {{name}}</h2><hr>
+  <div>
+    <div class="pull-left">
+      <a href="/"><h1><img height="50px" src="/img/science-book.png" alt="Science Book"> LabBase 3000</h1></a>
+    </div>
+    <div class="pull-right">
+      <h2><img height="40px" src="/img/bond.png" alt="Bond"> Lab: {{name}}</h2>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+  <hr>
   <!-- New Employee Modal -->
   <div class="modal fade" id="empModal" tabindex="-1" role="dialog" aria-labelledby="empModalLabel">
     <div class="modal-dialog" role="document">
@@ -98,7 +106,7 @@
   </div>
 
   <div id="employees">
-    <div class="header">
+    <div>
       <div class="pull-left">
         <h3><img height="32px" src="/img/employee.png" alt="Employee"> Employees at {{name}} ({{employees.length}}): </h3>
       </div>

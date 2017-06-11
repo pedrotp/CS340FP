@@ -17,6 +17,6 @@ div.thumbnail:hover {
   transition: .5s ease;
 }
 
-h1, h2, h3 {
-  display: inline;
+.pull-left h3 {
+  margin: 0;
 }
