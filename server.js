@@ -175,7 +175,7 @@ app.delete('/project', function (req, res, next) {
   });
 });
 
-app.post('/reset-tables',function (req,res,next){
+app.get('/reset-tables',function (req,res,next){
 
   fs.readFile(__dirname + '/public/sql/data_definition.sql', 'utf8', function (err, data) {
     if (err) {
@@ -191,7 +191,7 @@ app.post('/reset-tables',function (req,res,next){
           res.status(500);
           res.render('500', { title: '500: SERVER ERROR' });
         } else {
-          res.sendStatus(200);
+          res.render('app', {});
         }
       });
     }
