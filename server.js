@@ -155,7 +155,7 @@ app.get('/equipment-type', function (req, res, next) {
 
 app.post('/equipment-type', function (req, res, next) {
 
-  pool.query("INSERT INTO `equipment-type` (`name`) VALUES (?)", [req.body.name], function (err, result) {
+  pool.query("INSERT INTO `equipment_type` (`name`) VALUES (?)", [req.body.name], function (err, result) {
     if(err){
       next(err);
       return;
