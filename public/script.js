@@ -50,7 +50,7 @@ $('#employee').on('click', 'button.btn-success', function (event) {
         local: results
       });
 
-      $('#empModal')find('input[name="manager"]').typeahead({
+      $('#empModal').find('input[name="manager"]').typeahead({
         hint: true,
         minLength: 2,
         highlight: true
