@@ -54,8 +54,8 @@ $('div.container').on('click', '.add-button', function (event) {
   if (fdata.manager && employeeNames[fdata.manager]) {
     fdata.manager_id = employeeNames[fdata.manager];
   }
-  if (fdata.mantainer && employeeNames[fdata.mantainer]) {
-    fdata.mantainer_id = employeeNames[fdata.mantainer];
+  if (fdata.maintainer && employeeNames[fdata.maintainer]) {
+    fdata.maintainer_id = employeeNames[fdata.maintainer];
   }
   if (fdata.equipment_type && equipmentTypes[fdata.equipment_type]) {
       fdata.type_id = equipmentTypes[fdata.equipment_type];

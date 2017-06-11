@@ -173,7 +173,7 @@
     {{#if equipment.length}}
       <table class="table table-bordered table-condensed table-striped table-responsive">
         <tr><th class="text-center">Type</th><th class="text-center">Calibration Date</th><th class="text-center">Purchase Date</th><th class="text-center">Maintainer</th><th class="buttons"></th></tr>
-        {{#each projects}}
+        {{#each equipment}}
             <tr class="reg-row" data-type="equipment">
               <input type="hidden" name="id" value={{this.id}}>
               <td>
