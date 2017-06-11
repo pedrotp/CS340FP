@@ -1,6 +1,18 @@
 var path = 'http://flip3.engr.oregonstate.edu:19469/';
 
 var autocompleteResults = {};
+var employeeNames = {};
+var equipmentTypes = {};
+
+$.ajax({
+  method: 'GET',
+  url: path + 'employees',
+  success: function (results) {
+    for (var i = 0; i < results.length; i++) {
+      employeeNames[results[i].first_name + " " + results[i].last_name] = results[i].id;
+    }
+  }
+});
 
 /* Submit the 'add lab form' in the modal */
 $('#createLab').click(function(event) {
@@ -29,8 +41,8 @@ $('div.container').on('click', '.add-button', function (event) {
   for (var i = 0; i < farr.length; i++) {
     fdata[farr[i].name] = farr[i].value;
   }
-  if (fdata.manager && autocompleteResults[fdata.manager]) {
-    fdata.manager_id = autocompleteResults[fdata.manager];
+  if (fdata.manager && employeeNames[fdata.manager]) {
+    fdata.manager_id = employeeNames[fdata.manager];
   }
   fdata.lab_id = $form.attr('data-lab-id');
   $.ajax({
@@ -49,15 +61,14 @@ $('#employee').on('click', 'button.btn-success', function (event) {
     method: 'GET',
     url: path + 'employees',
     success: function (results) {
-      console.log(results);
 
-      var strings = [];
-      var tuples = {};
-      for (var i = 0; i < results.length; i++) {
-        strings.push(results[i].first_name + " " + results[i].last_name);
-        tuples[results[i].first_name + " " + results[i].last_name] = results[i].id;
-      }
-      autocompleteResults = tuples;
+      var strings = Object.keys(employeeNames);
+      // var tuples = {};
+      // for (var i = 0; i < results.length; i++) {
+      //   strings.push(results[i].first_name + " " + results[i].last_name);
+      //   tuples[results[i].first_name + " " + results[i].last_name] = results[i].id;
+      // }
+      // autocompleteResults = tuples;
 
       var employees = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,
@@ -75,7 +86,7 @@ $('#employee').on('click', 'button.btn-success', function (event) {
         async: true
       });
     }
-  })
+  });
 });
 
 /* Click on any of the Lab cards */
