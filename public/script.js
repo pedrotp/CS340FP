@@ -130,7 +130,7 @@ $('#equipment').on('click', 'button.btn-success', function (event) {
     name: 'equipment',
     source: equipment,
     templates: {
-      empty: '<a href="#"><strong>Add New Type</strong></a>'
+      empty: '<div class="tt-suggestion tt-selectable"><a href="#"><strong>Add New Type</strong></a></div>'
     }
   });
 
