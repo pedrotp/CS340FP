@@ -138,12 +138,14 @@ $('#equipment').on('click', 'button.btn-success', function (event) {
 
 $('#eqModal').on('click','div.new-type', function (event) {
 
+  var eqName = $('#eqModal').find('input[name="equipment_type"]').typeahead('val');
   $.ajax({
     method: 'POST',
     url: path + 'equipment-type',
-    data: { name: $('#eqModal').find('input[name="equipment_type"]').typeahead('val') },
-    success: function () {
+    data: { name: eqname },
+    success: function (id) {
       $('#eqModal').find('input[name="equipment_type"]').typeahead('destroy');
+      equipmentTypes[eqname] = id[0];
       // $('#eqModal').find('input[name="equipment_type"]').prop('disabled',true);
     }
   });

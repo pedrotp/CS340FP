@@ -160,9 +160,8 @@ app.post('/equipment-type', function (req, res, next) {
       next(err);
       return;
     }
-    selectAll(res, function() {
-      res.sendStatus(200);
-    });
+    res.status(200);
+    res.send([result.insertId]);
   });
 });
 
