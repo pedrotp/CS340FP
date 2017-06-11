@@ -1,28 +1,32 @@
 <div class="container">
   <a href="/"><h1><img height="50px" src="/img/science-book.png" alt="Science Book"> LabBase 3000  / </h1></a><h2><img height="40px" src="/img/bond.png" alt="Bond">{{name}}</h2><hr>
   <!-- New Employee Modal -->
-  <div class="modal fade" id="empModal" tabindex="-1" role="dialog" aria-labelledby="labModalLabel">
+  <div class="modal fade" id="empModal" tabindex="-1" role="dialog" aria-labelledby="empModalLabel">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="labModalLabel">Create a new Lab</h4>
+          <h4 class="modal-title" id="empModalLabel">Add new employee</h4>
         </div>
         <div class="modal-body">
           <form class="form-inline">
             <div class="form-group">
-              <label class="sr-only" for="name-field">Lab Name</label>
-              <input type="text" class="form-control" name="labName" placeholder="Lab Name">
+              <label class="sr-only" for="name-field">First Name</label>
+              <input type="text" class="form-control" name="empFName" placeholder="First Name">
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="name-field">Last Name</label>
+              <input type="text" class="form-control" name="empLName" placeholder="Last Name">
             </div>
             <div class="form-group">
               <label class="sr-only" for="ext-field">Extension #</label>
-              <input type="text" class="form-control" name="labExt" placeholder="Extension #">
+              <input type="text" class="form-control" name="empExt" placeholder="Extension #">
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button id="createLab" type="submit" class="btn btn-primary">Create Lab</button>
+          <button id="createLab" type="submit" class="btn btn-primary">Add Employee</button>
         </div>
       </div>
     </div>
@@ -62,23 +66,31 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="labModalLabel">Create a new Lab</h4>
+          <h4 class="modal-title" id="labModalLabel">Add equipment</h4>
         </div>
         <div class="modal-body">
           <form class="form-inline">
             <div class="form-group">
-              <label class="sr-only" for="name-field">Lab Name</label>
-              <input type="text" class="form-control" name="labName" placeholder="Lab Name">
+              <label class="sr-only" for="type-field">Equipment Type</label>
+              <input type="text" data-provide="typeahead" autocomplete="off" class="form-control eqtype" name="type-field" placeholder="Enter Type">
             </div>
             <div class="form-group">
-              <label class="sr-only" for="ext-field">Extension #</label>
-              <input type="text" class="form-control" name="labExt" placeholder="Extension #">
+              <label class="sr-only" for="maintainer-field">Maintainer</label>
+              <input type="text" data-provide="typeahead" autocomplete="off" class="form-control maintainer" name="maintainer-field" placeholder="Employee Name">
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="pdate-field">Purchase Date</label>
+              <input type="date" class="form-control" name="pdate-field">
+            </div>
+            <div class="form-group">
+              <label class="sr-only" for="cdate-field">Calibration Date</label>
+              <input type="date" class="form-control" name="cdate-field">
             </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button id="createLab" type="submit" class="btn btn-primary">Create Lab</button>
+          <button id="createLab" type="submit" class="btn btn-primary">Add Equipment</button>
         </div>
       </div>
     </div>
