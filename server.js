@@ -46,7 +46,6 @@ app.get('/lab/:id', function(req,res){
   }).then(function () {
     return pool.query('SELECT * FROM `employee` WHERE lab_id=? ORDER BY id',[req.params.id]);
   }).then(function (results, fields) {
-    console.log("emp: ", results);
     context.employees = results;
   })
   .then(function() {
@@ -57,7 +56,6 @@ app.get('/lab/:id', function(req,res){
   .then(function() {
     return pool.query('SELECT * FROM `equipment` WHERE lab_id=? ORDER BY id',[req.params.id]);
   }).then(function (results, fields) {
-    console.log("equipment: ", results)
     context.equipment = results;
   }).then(function () {
     res.render('lab', context);
@@ -155,7 +153,7 @@ app.delete('/equipment', function (req, res, next) {
 });
 
 app.post('/project', function (req, res, next) {
-  pool.query("INSERT INTO `project` (`name`, `start_date`, `due_date`, `objective`) VALUES (?,?)", [req.body.name, req.body.start_date, req.body.due_date, req.body.objective], function (err, result) {
+  pool.query("INSERT INTO `project` (`name`, `start_date`, `due_date`, `objective`) VALUES (?,?,?,?)", [req.body.name, req.body.start_date, req.body.due_date, req.body.objective], function (err, result) {
     if(err){
       next(err);
       return;
