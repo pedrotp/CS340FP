@@ -18,7 +18,6 @@ $.ajax({
   method: 'GET',
   url: path + 'equipment-type',
   success: function (results) {
-    console.log('results\n', results);
     for (var i = 0; i < results.length; i++) {
       equipmentTypes[results[i].name] = results[i].id;
     }
@@ -117,7 +116,7 @@ $('#equipment').on('click', 'button.btn-success', function (event) {
     }
   });
 
-  $('#eqModal').find('input[name="mantainer"]').typeahead({
+  $('#eqModal').find('input[name="maintainer"]').typeahead({
     minLength: 2,
     highlight: true
   },
@@ -126,7 +125,7 @@ $('#equipment').on('click', 'button.btn-success', function (event) {
     source: employees
   });
 
-  $('#eqModal').find('input[name="equipment-type"]').typeahead({
+  $('#eqModal').find('input[name="equipment_type"]').typeahead({
     minLength: 2,
     highlight: true
   },
