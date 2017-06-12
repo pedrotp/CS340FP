@@ -1,6 +1,6 @@
 /*
 
-THE APP IS RUNNING AT http://flip3.engr.oregonstate.edu:19853/
+THE APP IS RUNNING AT http://flip3.engr.oregonstate.edu:195524/
 
 */
 
@@ -13,7 +13,7 @@ var bodyParser = require('body-parser');
 var moment = require('moment');
 var fs = require('fs');
 
-var port = process.env.PORT || 19469;
+var port = process.env.PORT || 195524;
 
 var mysql = require('promise-mysql');
 var pool = mysql.createPool({
