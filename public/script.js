@@ -202,14 +202,13 @@ $('.container').on('click', 'input[type="button"][value="Remove"]', function (ev
 
 /* Press any of the delete buttons */
 $('.container').on('click', 'a.employee-id', function (event) {
-
   $.ajax({
-    method: 'DELETE',
-    url: path + $tr.attr("data-type"),
-    data: { id: id }
+    method: 'GET',
+    url: path + 'employee/' + $(this).attr('data-employee-id')
   })
-  .done(function () {
-    $tr.remove();
+  .done(function (result) {
+    $('#loadingModal').find('h4').text(result.first_name + " " + result.last_name);
+    $('#loadingModal').find('div.modal-body').html('<table class="table table-bordered table-condensed table-striped table-responsive"><tr><th class="text-center">First Name</th><th class="text-center">Last Name</th><th class="text-center">Extension</th></tr><tr><td><p class="text-center">' + result.first_name + '</p></td><td><p class="text-center">' + result.last_name + '</p></td><td><p class="text-center">' + result.ext + '</p></td></tr></table>');
   });
   event.preventDefault();
 });
