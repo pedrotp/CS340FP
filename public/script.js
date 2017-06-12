@@ -235,3 +235,35 @@ $('.container').on('click', '.show-more', function (event) {
   }
   event.preventDefault();
 });
+
+/* Click on a link in a project row */
+$('div#project').on('click', 'a', function (event) {
+  $this = $(this);
+  if ($this.attr('data-query') == 'objective') {
+    $('#emptyModal').find('h4').text('Objective');
+    $('#emptyModal').find('div.modal-body').html('<p>' + $('p.objective').text() + '</p>');
+  } else if () {
+    $.ajax({
+      method: 'GET',
+      url: path + 'equipment/' + $this.attr('data-employee-id')
+    }).done(function (results) {
+      $('#loadingModal').find('h4').text('Equipment');
+      $('#loadingModal').find('div.modal-body').html('<table class="table table-bordered table-condensed table-striped table-responsive"><tr><th class="text-center">Type</th><th class="text-center">Calibration Date</th><th class="text-center">Purchase Date</th></tr></table>');
+      for (var i = 0; i < results.length; i++) {
+        $('#loadingModal').find('table.table').append($('<tr class="reg-row" data-type="equipment"><td><p class="text-center type-id">' + results[i].name + '</p></td><td><p class="text-center">' + results[i].calibration_date + '</p></td><td><p class="text-center">' + results[i].purchase_date + '</p></td></tr>'));
+      }
+    });
+  } else if ($this.attr('data-query') == 'employee-project') {
+    $.ajax({
+      method: 'GET',
+      url: path + 'employee-project/' + $this.attr('data-employee-id')
+    }).done(function (results) {
+      $('#loadingModal').find('h4').text('Project');
+      $('#loadingModal').find('div.modal-body').html('<table class="table table-bordered table-condensed table-striped table-responsive"><tr><th class="text-center">Name</th><th class="text-center">Start Date</th><th class="text-center">Due Date</th></tr>');
+      for (var i = 0; i < results.length; i++) {
+        $('#loadingModal').find('table.table').append($('<tr class="reg-row" data-type="project"><td><p class="text-center type-id">' + results[i].name + '</p></td><td><p class="text-center">' + results[i].start_date + '</p></td><td><p class="text-center">' + results[i].due_date + '</p></td></tr>'));
+      }
+    });
+  }
+  event.preventDefault();
+});
