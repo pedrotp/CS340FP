@@ -213,7 +213,7 @@ $('.container').on('click', '.show-more', function (event) {
   if ($this.attr('data-query') == 'employee-equipment') {
     $.ajax({
       method: 'GET',
-      url: path + 'equipment/' + $(this).attr('data-employee-id')
+      url: path + 'equipment/' + $this.attr('data-employee-id')
     }).done(function (results) {
       console.log('emp-eq-res\n',results);
       $('#loadingModal').find('h4').text('Equipment');
@@ -225,7 +225,7 @@ $('.container').on('click', '.show-more', function (event) {
   } else if ($this.attr('data-query') == 'employee-project') {
     $.ajax({
       method: 'GET',
-      url: path + 'employee-project/' + $(this).attr('data-employee-id')
+      url: path + 'employee-project/' + $this.attr('data-employee-id')
     }).done(function (results) {
       $('#loadingModal').find('h4').text('Project');
       $('#loadingModal').find('div.modal-body').html('<table class="table table-bordered table-condensed table-striped table-responsive"><tr><th class="text-center">Name</th><th class="text-center">Start Date</th><th class="text-center">Due Date</th></tr>');
