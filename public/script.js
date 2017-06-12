@@ -26,7 +26,9 @@ $.ajax({
 
 $(document).ready(function () {
   $('p.employee-transform').each(function () {
-    $(this).text(_.findKey(employeeNames, function (id) { return id == $(this).text(); }));
+    var str = _.findKey(employeeNames, function (id) { return id == $(this).text(); });
+    console.log("emp transform: " + str);
+    $(this).text(str);
   });
   $('p.type-transform').each(function () {
     $(this).text(_.findKey(equipmentTypes, function (id) { return id == $(this).text(); }));
