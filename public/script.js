@@ -346,7 +346,7 @@ $('.container').on('click', 'p.editable', function (event) {
   $(this).parent().find('input').val($(this).text()).focus();
 });
 
-$('#edit-button').click(function(event) {
+$('.edit-button').click(function(event) {
   var fdata = {};
   var $this = $(this);
   fdata.id = $this.attr('data-project-id');
