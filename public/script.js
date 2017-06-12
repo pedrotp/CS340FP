@@ -262,7 +262,7 @@ $('div#project').on('click', 'a', function (event) {
       $('#emptyModal').find('h4').text('Employees');
       $('#emptyModal').find('div.modal-body').html('<table class="table table-bordered table-condensed table-striped table-responsive"><tr><th class="text-center">First Name</th><th class="text-center">Last Name</th><th class="text-center">Extension</th></tr></table>');
       for (var i = 0; i < results.length; i++) {
-        $('#emptyModal').find('table.table').append($('<tr><td><p class="text-center">' + result.first_name + '</p></td><td><p class="text-center">' + result.last_name + '</p></td><td><p class="text-center">' + result.ext + '</p></td></tr></table>'));
+        $('#emptyModal').find('table.table').append($('<tr><td><p class="text-center">' + results[i].first_name + '</p></td><td><p class="text-center">' + results[i].last_name + '</p></td><td><p class="text-center">' + results[i].ext + '</p></td></tr></table>'));
       }
       $('#emptyModal').find('div.modal-body').append($('<hr><form class="form-inline"><div class="form-group"><label for="search_box">Add Employee</label><input type="text" autocomplete="off" class="form-control typeahead" id="search_box" placeholder="Jane Doe"></div><button type="button" class="btn btn-default search-submit">Add to project</button></form>'));
 
