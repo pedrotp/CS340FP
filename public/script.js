@@ -26,10 +26,10 @@ $.ajax({
 
 $(document).ready(function () {
   $('p.employee-transform').each(function () {
-    $(this).text(_.findKey(employeeNames,$(this).text()));
+    $(this).text(_.findKey(employeeNames, function (id) { return id == $(this).text() })));
   });
   $('p.type-transform').each(function () {
-    $(this).text(equipmentTypes[$(this).text()]);
+    $(this).text(_.findKey(equipmentTypes, function (id) { return id == $(this).text() })));
   });
 });
 
