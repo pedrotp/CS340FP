@@ -26,7 +26,7 @@ $.ajax({
 
 $(document).ready(function () {
   $('p.employee-transform').each(function () {
-    var str = _.findKey(employeeNames, function (id) { return id == $(this).text(); });
+    var str = _.findKey(employeeNames, function (id) { return id == $(this).attr('data-employee-id'); });
     console.log("emp transform: " + str);
     $(this).text(str);
   });
