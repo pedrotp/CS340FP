@@ -140,7 +140,7 @@
               </td>
               <td>
                 {{#if this.manager_id}}
-                <a href="#"><p class="text-center">ID# {{this.manager_id}}</p></a>
+                <a href="#"><p class="text-center employee-transform">ID# {{this.manager_id}}</p></a>
                 {{/if}}
               </td>
               <td class="buttons">
@@ -177,7 +177,7 @@
             <tr class="reg-row" data-type="equipment">
               <input type="hidden" name="id" value={{this.id}}>
               <td>
-                <p class="text-center">{{this.type_id}}</p>
+                <p class="text-center type-transform">{{this.type_id}}</p>
               </td>
               <td>
                 <p class="text-center">{{this.calibration_date}}</p>
@@ -186,7 +186,7 @@
                 <p class="text-center">{{this.purchase_date}}</p>
               </td>
               <td>
-                <p class="text-center table-link">{{this.maintainer_id}}</p>
+                <p class="text-center employee-transform">{{this.maintainer_id}}</p>
               </td>
               <td class="buttons">
                   <input class="btn btn-danger" type="button" value="Remove">

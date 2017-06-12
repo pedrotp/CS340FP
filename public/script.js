@@ -24,6 +24,15 @@ $.ajax({
   }
 });
 
+$(document).ready(function () {
+  $('p.employee-transform').each(function () {
+    $(this).text(employeeNames[$(this).text()]);
+  });
+  $('p.type-transform').each(function () {
+    $(this).text(equipmentTypes[$(this).text()]);
+  });
+});
+
 /* Submit the 'add lab form' in the modal */
 $('#createLab').click(function(event) {
   var fdata = {};
