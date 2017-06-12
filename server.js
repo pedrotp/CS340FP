@@ -171,7 +171,7 @@ app.post('/equipment-type', function (req, res, next) {
   });
 });
 
-app.get('/equipment/:employeeID', function (req, res, next) {
+app.get('/employee-equipment/:employeeID', function (req, res, next) {
   pool.query('SELECT name, calibration_date, purchase_date FROM `equipment` INNER JOIN `equipment_type` ON equipment.type_id = equipment_type.id WHERE equipment.maintainer_id = ?',[req.params.employeeID]).then(function (results, fields) {
     res.status(200);
     res.json(results);
@@ -185,6 +185,30 @@ app.get('/equipment/:employeeID', function (req, res, next) {
 
 app.get('/employee-project/:employeeID', function (req, res, next) {
   pool.query('SELECT name, start_date, due_date FROM `project` INNER JOIN `employee_project` ON employee_project.project_id = project.id WHERE employee_project.employee_id = ?',[req.params.id]).then(function (results, fields) {
+    res.status(200);
+    res.json(results);
+  }).catch(function (err) {
+      console.error(err.stack);
+      res.type('plain/text');
+      res.status(500);
+      res.render('500', { title: '500: SERVER ERROR' });
+  });
+});
+
+app.get('/project-equipment/:projectID', function (req, res, next) {
+  pool.query('SELECT equipment_type.name FROM `equipment_type` INNER JOIN `project_equipment` ON project_equipment.equipment_type_id = equipment_type.id WHERE project_id = ?',[req.params.projectID]).then(function (results, fields) {
+    res.status(200);
+    res.json(results);
+  }).catch(function (err) {
+      console.error(err.stack);
+      res.type('plain/text');
+      res.status(500);
+      res.render('500', { title: '500: SERVER ERROR' });
+  });
+});
+
+app.get('/project-employee/:projectID', function (req, res, next) {
+  pool.query('SELECT first_name, last_name, ext FROM `employee` INNER JOIN `employee_project` ON employee.id = employee_project.employee_id WHERE project_id = ?',[req.params.projectID]).then(function (results, fields) {
     res.status(200);
     res.json(results);
   }).catch(function (err) {
