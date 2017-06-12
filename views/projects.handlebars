@@ -4,6 +4,7 @@
     <li role="presentation"><a href="/">Labs</a></li>
     <li role="presentation" class="active"><a href="#">Projects</a></li>
   </ul>
+  <br>
   <!-- New Project Modal -->
   <div class="modal fade" id="projModal" tabindex="-1" role="dialog" aria-labelledby="projModalLabel">
     <div class="modal-dialog" role="document">
@@ -43,7 +44,7 @@
   <div id="project">
     {{#if projects.length}}
       <table class="table table-bordered table-condensed table-striped table-responsive">
-        <tr><th class="text-center">Name</th><th class="text-center">Request Date</th><th class="text-center">Due Date</th><th class="text-center">Objective</th><th class="text-center">Employees</th><th class="text-center">Equipment</th><th class="buttons"></th></tr>
+        <tr><th class="text-center">Name</th><th class="text-center">Start Date</th><th class="text-center">Due Date</th><th class="text-center">Objective</th><th class="text-center">Employees</th><th class="text-center">Equipment</th><th class="buttons"></th></tr>
         {{#each projects}}
             <tr class="reg-row" data-type="project">
               <input type="hidden" name="id" value={{this.id}}>
@@ -57,13 +58,13 @@
                 <p class="text-center">{{this.due_date}}</p>
               </td>
               <td>
-                <p class="text-center table-link">See Objective</p>
+                <a href="#"><p class="text-center table-link">See Objective</p></a>
               </td>
               <td>
-                <p class="text-center table-link">See Employees</p>
+                <a href="#"><p class="text-center table-link">See Employees</p></a>
               </td>
               <td>
-                <p class="text-center table-link">See Equipment</p>
+                <a href="#"><p class="text-center table-link">See Equipment</p></a>
               </td>
               <td class="buttons">
                   <input class="btn btn-danger" type="button" value="Remove">

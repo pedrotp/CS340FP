@@ -151,10 +151,10 @@
                 <p class="text-center">{{this.ext}}</p>
               </td>
               <td>
-                <a href="#"><p class="text-center">See Projects</p></a>
+                <a href="#" class="show-more" data-toggle="modal" data-target="#loadingModal" data-query="employee-project" data-employee-id="{{this.id}}"><p class="text-center">See Projects</p></a>
               </td>
               <td>
-                <a href="#"><p class="text-center">See Equipment</p></a>
+                <a href="#" class="show-more" data-toggle="modal" data-target="#loadingModal" data-query="employee-equipment" data-employee-id="{{this.id}}"><p class="text-center">See Equipment</p></a>
               </td>
               <td>
                 {{#if this.manager_id}}
@@ -193,11 +193,8 @@
         {{#each equipment}}
             <tr class="reg-row" data-type="equipment">
               <input type="hidden" name="id" value={{this.id}}>
-              <!-- <td>
-                <a href="#" class="type-id" data-toggle="modal" data-target="#loadingModal" data-type-id="{{this.type_id}}"><p class="text-center">ID# {{this.type_id}}</p></a>
-              </td> -->
               <td>
-                <p class="text-center type-id" data-toggle="modal" data-target="#loadingModal" data-type-id="{{this.type_id}}"></p>
+                <p class="text-center type-id" data-type-id="{{this.type_id}}"></p>
               </td>
               <td>
                 <p class="text-center">{{this.calibration_date}}</p>
