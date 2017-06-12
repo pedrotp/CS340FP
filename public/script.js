@@ -258,14 +258,14 @@ $('div#project').on('click', 'a', function (event) {
       method: 'GET',
       url: path + 'project-employee/' + $this.attr('data-id')
     }).done(function (results) {
-      console.log('success!',err);
+      console.log('success!',results);
       $('#loadingModal').find('h4').text('Employees');
       $('#loadingModal').find('div.modal-body').html('<table class="table table-bordered table-condensed table-striped table-responsive"><tr><th class="text-center">First Name</th><th class="text-center">Last Name</th><th class="text-center">Extension</th></tr></table>');
       for (var i = 0; i < results.length; i++) {
         $('#loadingModal').find('table.table').append($('<tr><td><p class="text-center">' + result.first_name + '</p></td><td><p class="text-center">' + result.last_name + '</p></td><td><p class="text-center">' + result.ext + '</p></td></tr></table>'));
       }
     }).fail(function (err) {
-      console.log('error!',err);
+      console.log('error!', err);
       $('#loadingModal').find('h4').text('Employees');
       $('#loadingModal').find('div.modal-body').html('<p>No employees are working on this project yet.</p>');
     });
