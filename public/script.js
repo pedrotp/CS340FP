@@ -242,7 +242,7 @@ $('div#project').on('click', 'a', function (event) {
   if ($this.attr('data-query') == 'objective') {
     $('#emptyModal').find('h4').text('Objective');
     $('#emptyModal').find('div.modal-body').html('<p>' + $('p.objective').text() + '</p>');
-  } else if () {
+  } else if ($this.attr('data-query') == 'equipment') {
     $.ajax({
       method: 'GET',
       url: path + 'equipment/' + $this.attr('data-employee-id')
@@ -253,7 +253,7 @@ $('div#project').on('click', 'a', function (event) {
         $('#loadingModal').find('table.table').append($('<tr class="reg-row" data-type="equipment"><td><p class="text-center type-id">' + results[i].name + '</p></td><td><p class="text-center">' + results[i].calibration_date + '</p></td><td><p class="text-center">' + results[i].purchase_date + '</p></td></tr>'));
       }
     });
-  } else if ($this.attr('data-query') == 'employee-project') {
+  } else if ($this.attr('data-query') == 'employees') {
     $.ajax({
       method: 'GET',
       url: path + 'employee-project/' + $this.attr('data-employee-id')
