@@ -258,6 +258,7 @@ $('div#project').on('click', 'a', function (event) {
       method: 'GET',
       url: path + 'project-employee/' + $this.attr('data-id')
     }).done(function (results) {
+      console.log(results);
       $('#emptyModal').find('h4').text('Employees');
       $('#emptyModal').find('div.modal-body').html('<table class="table table-bordered table-condensed table-striped table-responsive"><tr><th class="text-center">First Name</th><th class="text-center">Last Name</th><th class="text-center">Extension</th></tr></table>');
       for (var i = 0; i < results.length; i++) {
