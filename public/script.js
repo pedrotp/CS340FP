@@ -24,7 +24,6 @@ $.ajax({
     $('p.type-id').each(function () {
       $this = $(this);
       var text = _.findKey(equipmentTypes, function (id) { return id == $this.attr('data-type-id'); });
-      console.log(text)
       $(this).text(text);
     });
   }
@@ -201,7 +200,6 @@ $('.container').on('click', 'a.employee-id', function (event) {
     method: 'GET',
     url: path + 'employee/' + $(this).attr('data-employee-id')
   }).done(function (result) {
-    console.log('result', result);
     result = result[0];
     $('#loadingModal').find('h4').text(result.first_name + " " + result.last_name);
     $('#loadingModal').find('div.modal-body').html('<table class="table table-bordered table-condensed table-striped table-responsive"><tr><th class="text-center">First Name</th><th class="text-center">Last Name</th><th class="text-center">Extension</th></tr><tr><td><p class="text-center">' + result.first_name + '</p></td><td><p class="text-center">' + result.last_name + '</p></td><td><p class="text-center">' + result.ext + '</p></td></tr></table>');
@@ -217,6 +215,7 @@ $('.container').on('click', '.show-more', function (event) {
       method: 'GET',
       url: path + 'equipment/' + $(this).attr('data-employee-id')
     }).done(function (results) {
+      console.log('emp-eq-res\n',results);
       $('#loadingModal').find('h4').text('Equipment');
       $('#loadingModal').find('div.modal-body').html('<table class="table table-bordered table-condensed table-striped table-responsive"><tr><th class="text-center">Type</th><th class="text-center">Calibration Date</th><th class="text-center">Purchase Date</th></tr></table>');
       for (var i = 0; i < results.length; i++) {
