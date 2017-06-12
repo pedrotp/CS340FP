@@ -247,7 +247,6 @@ app.put('/project', function(req, res, next) {
     }
     if(result.length){
       var current = result[0];
-      console.log(current);
       pool.query("UPDATE project SET name=?, start_date=?, due_date=?, objective=? WHERE id=?",
         [req.body.name || current.name, req.body.start_date || current.start_date, req.body.due_date || current.due_date, req.body.objective || current.objective, req.body.id],
         function (err, result){
