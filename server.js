@@ -203,7 +203,17 @@ app.post('/employee-project', function (req, res, next) {
     }
     res.sendStatus(200);
   });
-})
+});
+
+app.post('/project-equipment', function (req, res, next) {
+  pool.query("INSERT INTO `project_equipment` (`project_id`,`equipment_type_id`) VALUES (?,?)", [req.body.project_id, req.body.equipment_type_id], function (err, result) {
+    if(err){
+      next(err);
+      return;
+    }
+    res.sendStatus(200);
+  });
+});
 
 app.get('/project-equipment/:projectID', function (req, res, next) {
   pool.query('SELECT equipment_type.name FROM `equipment_type` INNER JOIN `project_equipment` ON project_equipment.equipment_type_id = equipment_type.id WHERE project_id = ?',[req.params.projectID]).then(function (results, fields) {

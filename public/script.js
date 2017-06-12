@@ -252,19 +252,53 @@ $('div#project').on('click', 'a', function (event) {
       for (var i = 0; i < results.length; i++) {
         $('#emptyModal').find('table.table').append($('<tr class="reg-row" data-type="equipment"><td><p class="text-center type-id">' + results[i].name + '</p></td><td><p class="text-center">' + results[i].calibration_date + '</p></td><td><p class="text-center">' + results[i].purchase_date + '</p></td></tr>'));
       }
+      $('#emptyModal').find('div.modal-body').append($('<hr><form><div class="form-group"><label for="search_box">Add Employee</label><input type="text" autocomplete="off" class="form-control typeahead" id="search_box" placeholder="Jane Doe"></div><button type="button" class="btn btn-default btn-block equipment-submit">Add to project</button></form>'));
+
+      var strings = Object.keys(equipmentTypes);
+
+      var employees = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: strings
+      });
+
+      $('input#search_box').typeahead({
+        minLength: 2,
+        highlight: true
+      },
+      {
+        name: 'types',
+        source: types
+      });
+
+      $('#emptyModal').on('click', 'button.equipment-submit', function (event) {
+        var eqID = employeeNames[$('input#search_box').typeahead('val')];
+        if (eqID) {
+          $.ajax({
+            method: 'POST',
+            url: path + 'project-equipment',
+            data: {
+              equipment_type_id: eqID,
+              project_id: $this.attr('data-id')
+            },
+            success: function () {
+              location.reload();
+            }
+          });
+        }
+      });
     });
   } else if ($this.attr('data-query') == 'employees') {
     $.ajax({
       method: 'GET',
       url: path + 'project-employee/' + $this.attr('data-id')
     }).done(function (results) {
-      console.log(results);
       $('#emptyModal').find('h4').text('Employees');
       $('#emptyModal').find('div.modal-body').html('<table class="table table-bordered table-condensed table-striped table-responsive"><tr><th class="text-center">First Name</th><th class="text-center">Last Name</th><th class="text-center">Extension</th></tr></table>');
       for (var i = 0; i < results.length; i++) {
         $('#emptyModal').find('table.table').append($('<tr><td><p class="text-center">' + results[i].first_name + '</p></td><td><p class="text-center">' + results[i].last_name + '</p></td><td><p class="text-center">' + results[i].ext + '</p></td></tr></table>'));
       }
-      $('#emptyModal').find('div.modal-body').append($('<hr><form class="form-inline"><div class="form-group"><label for="search_box">Add Employee</label><input type="text" autocomplete="off" class="form-control typeahead" id="search_box" placeholder="Jane Doe"></div><button type="button" class="btn btn-default search-submit">Add to project</button></form>'));
+      $('#emptyModal').find('div.modal-body').append($('<hr><form><div class="form-group"><label for="search_box">Add Employee</label><input type="text" autocomplete="off" class="form-control typeahead" id="search_box" placeholder="Jane Doe"></div><button type="button" class="btn btn-default btn-block search-submit">Add to project</button></form>'));
 
       var strings = Object.keys(employeeNames);
 
