@@ -345,3 +345,21 @@ $('.container').on('click', 'p.editable', function (event) {
   $(this).parent().find('form.hidden').removeClass('hidden');
   $(this).parent().find('input').val($(this).text()).focus();
 });
+
+$('#edit-button').click(function(event) {
+  var fdata = {};
+  var $this = $(this);
+  fdata.id = $this.attr('data-project-id');
+  fdata.name = $this.parent().find('input').val();
+  $.ajax({
+    method: 'PUT',
+    url: path + 'project',
+    data: fdata,
+    success: function (id) {
+      $this.closest('td').find('p.editable').text(fdata.name);
+      $this.closest('td').find('p.editable').show();
+      $this.closest('td').find('form').hide();
+    }
+  });
+  event.preventDefault();
+});

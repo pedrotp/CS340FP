@@ -239,6 +239,28 @@ app.get('/project-employee/:projectID', function (req, res, next) {
   });
 });
 
+app.put('/project', function(req, res, next) {
+  pool.query("SELECT * FROM project WHERE id=?", [req.body.id], function(err, result){
+    if(err){
+      next(err);
+      return;
+    }
+    if(result.length){
+      var current = result[0];
+      console.log(current);
+      pool.query("UPDATE project SET name=?, start_date=?, due_date=?, objective=? WHERE id=?",
+        [req.body.name || current.name, req.body.start_date || current.start_date, req.body.due_date || current.due_date, req.body.objective || current.objective, req.body.id],
+        function (err, result){
+        if(err){
+          next(err);
+          return;
+        }
+        res.status(200).send("Updated " + result.changedRows + " rows.");
+      });
+    }
+  });
+});
+
 app.post('/equipment', function (req, res, next) {
   pool.query("INSERT INTO `equipment` (`type_id`, `lab_id`, `maintainer_id`, `calibration_date`, `purchase_date`) VALUES (?,?,?,?,?)", [req.body.type_id, req.body.lab_id, req.body.maintainer_id, req.body.calibration_date, req.body.purchase_date], function (err, result) {
     if(err){
@@ -337,27 +359,3 @@ app.use(function(err, req, res, next){
 app.listen(app.get('port'), function(){
   console.log('Express started on http://flip3.engr.oregonstate.edu:' + app.get('port') + '; press Ctrl-C to terminate.');
 });
-
-
-// app.put('/workouts', function(req, res, next) {
-//   console.log(req.body);
-//   pool.query("SELECT * FROM workouts WHERE id=?", [req.body.id], function(err, result){
-//     if(err){
-//       next(err);
-//       return;
-//     }
-//     if(result.length){
-//       var current = result[0];
-//       console.log(current);
-//       pool.query("UPDATE workouts SET name=?, reps=?, weight=?, date=?, lbs=? WHERE id=?",
-//         [req.body.name || current.name, req.body.reps || current.reps, req.body.weight || current.weight, req.body.date || current.date, req.body.lbs || current.lbs, req.body.id],
-//         function (err, result){
-//         if(err){
-//           next(err);
-//           return;
-//         }
-//         res.status(200).send("Updated " + result.changedRows + " rows.");
-//       });
-//     }
-//   });
-// });
