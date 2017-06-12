@@ -215,7 +215,6 @@ $('.container').on('click', '.show-more', function (event) {
       method: 'GET',
       url: path + 'equipment/' + $this.attr('data-employee-id')
     }).done(function (results) {
-      console.log('emp-eq-res\n',results);
       $('#loadingModal').find('h4').text('Equipment');
       $('#loadingModal').find('div.modal-body').html('<table class="table table-bordered table-condensed table-striped table-responsive"><tr><th class="text-center">Type</th><th class="text-center">Calibration Date</th><th class="text-center">Purchase Date</th></tr></table>');
       for (var i = 0; i < results.length; i++) {

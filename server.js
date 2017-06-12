@@ -172,8 +172,7 @@ app.post('/equipment-type', function (req, res, next) {
 });
 
 app.get('/equipment/:employeeID', function (req, res, next) {
-  console.log('emplopyee id: ', req.params.id)
-  pool.query('SELECT name, calibration_date, purchase_date FROM `equipment` INNER JOIN `equipment_type` ON equipment.type_id = equipment_type.id WHERE equipment.maintainer_id = ?',[req.params.id]).then(function (results, fields) {
+  pool.query('SELECT name, calibration_date, purchase_date FROM `equipment` INNER JOIN `equipment_type` ON equipment.type_id = equipment_type.id WHERE equipment.maintainer_id = ?',[req.params.employeeID]).then(function (results, fields) {
     res.status(200);
     res.json(results);
   }).catch(function (err) {
