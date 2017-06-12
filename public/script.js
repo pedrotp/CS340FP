@@ -263,6 +263,10 @@ $('div#project').on('click', 'a', function (event) {
       for (var i = 0; i < results.length; i++) {
         $('#loadingModal').find('table.table').append($('<tr><td><p class="text-center">' + result.first_name + '</p></td><td><p class="text-center">' + result.last_name + '</p></td><td><p class="text-center">' + result.ext + '</p></td></tr></table>'));
       }
+    }).error(function (err) {
+      console.log(err);
+      $('#loadingModal').find('h4').text('Employees');
+      $('#loadingModal').find('div.modal-body').html('<p>No employees are working on this project yet.</p>');
     });
   }
   event.preventDefault();
