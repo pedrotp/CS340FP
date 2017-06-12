@@ -69,7 +69,6 @@ $('div.container').on('click', '.add-button', function (event) {
   if (fdata.equipment_type && equipmentTypes[fdata.equipment_type]) {
       fdata.type_id = equipmentTypes[fdata.equipment_type];
   }
-
   fdata.lab_id = $form.attr('data-lab-id');
   $.ajax({
     method: 'POST',
@@ -77,6 +76,7 @@ $('div.container').on('click', '.add-button', function (event) {
     data: fdata,
     success: function () {
       $form.closest('.modal').modal('hide');
+      location.reload();
     }
   });
 });
@@ -145,6 +145,7 @@ $('#equipment').on('click', 'button.btn-success', function (event) {
 
 });
 
+/* Click on the new type link in the Type autocorrect menu */
 $('#eqModal').on('click','div.new-type', function (event) {
 
   var eqName = $('#eqModal').find('input[name="equipment_type"]').typeahead('val');
@@ -155,7 +156,6 @@ $('#eqModal').on('click','div.new-type', function (event) {
     success: function (id) {
       $('#eqModal').find('input[name="equipment_type"]').typeahead('destroy');
       equipmentTypes[eqName] = id[0];
-      // $('#eqModal').find('input[name="equipment_type"]').prop('disabled',true);
     }
   });
 
