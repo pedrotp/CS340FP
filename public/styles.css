@@ -34,3 +34,7 @@ div.thumbnail:hover {
   margin-top: 20px;
   margin-bottom: 10px;
 }
+
+#loading-img {
+  margin: 0 auto;
+}
