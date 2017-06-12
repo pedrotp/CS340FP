@@ -272,7 +272,7 @@ $('div#project').on('click', 'a', function (event) {
       });
 
       $('#emptyModal').on('click', 'button.equipment-submit', function (event) {
-        var eqID = employeeNames[$('input#search_box').typeahead('val')];
+        var eqID = equipmentTypes[$('input#search_box').typeahead('val')];
         if (eqID) {
           $.ajax({
             method: 'POST',
