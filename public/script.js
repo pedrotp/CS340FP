@@ -256,7 +256,7 @@ $('div#project').on('click', 'a', function (event) {
 
       var strings = Object.keys(equipmentTypes);
 
-      var employees = new Bloodhound({
+      var types = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         local: strings
