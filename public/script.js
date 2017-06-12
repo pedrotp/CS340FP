@@ -339,3 +339,9 @@ $('div#project').on('click', 'a', function (event) {
   }
   event.preventDefault();
 });
+
+$('.container').on('click', 'p.editable', function (event) {
+  $(this).hide();
+  $(this).parent().find('form.hidden').removeClass('hidden');
+  $(this).parent().find('input').val($(this).text()).focus();
+});

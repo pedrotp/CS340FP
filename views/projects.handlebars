@@ -68,7 +68,13 @@
             <tr class="reg-row" data-type="project">
               <input type="hidden" name="id" value={{this.id}}>
               <td>
-                <p class="text-center">{{this.name}}</p>
+                <p class="editable text-center">{{this.name}}</p>
+                <form class="form-inline edit-project-name hidden">
+                  <div class="form-group">
+                    <input type="text" class="form-control" name="edit-project" placeholder="Edit Name">
+                  </div>
+                  <button type="submit" class="btn btn-default">Update</button>
+                </form>
               </td>
               <td>
                 <p class="text-center">{{this.start_date}}</p>
@@ -87,7 +93,7 @@
                 <a href="#" data-query="equipment" data-toggle="modal" data-target="#emptyModal" data-id="{{this.id}}"><p class="text-center">See Equipment</p></a>
               </td>
               <td class="buttons">
-                  <input class="btn btn-danger" type="button" value="Remove">
+                <input class="btn btn-danger" type="button" value="Remove">
               </td>
             </tr>
         {{/each}}
