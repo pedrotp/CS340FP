@@ -21,16 +21,13 @@ $.ajax({
     for (var i = 0; i < results.length; i++) {
       equipmentTypes[results[i].name] = results[i].id;
     }
+    $('p.type-id').each(function () {
+      $this = $(this);
+      var text = _.findKey(equipmentTypes, function (id) { return id == $this.attr('data-type-id'); });
+      console.log(text)
+      $(this).text(text);
+    });
   }
-});
-
-$(document).ready(function () {
-  $('p.type-id').each(function () {
-    $this = $(this);
-    var text = _.findKey(equipmentTypes, function (id) { return id == $this.attr('data-type-id'); });
-    console.log(text)
-    $(this).text(text);
-  });
 });
 
 /* Submit the 'add lab form' in the modal */
