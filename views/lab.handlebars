@@ -10,6 +10,25 @@
   </div>
   <hr>
 
+  <!-- Loading Modal -->
+  <div class="modal fade" id="loadingModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Loading...</h4>
+        </div>
+        <div class="modal-body">
+          <img src="/img/progress.gif" alt="Loading...">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <!-- <button id="delete-lab-button" data-lab-id="{{lab_id}}" type="button" class="btn btn-danger">DELETE LAB</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Delete Modal -->
   <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
@@ -140,7 +159,7 @@
               </td>
               <td>
                 {{#if this.manager_id}}
-                <a href="#"><p class="text-center employee-transform" data-employee-id="{{this.manager_id}}"></p></a>
+                <a href="#" class="employee-id" data-toggle="modal" data-target="#loadingModal" data-employee-id="{{this.manager_id}}"><p class="text-center">ID# {{this.manager_id}}</p></a>
                 {{/if}}
               </td>
               <td class="buttons">
@@ -152,7 +171,6 @@
     {{else}}
       <h3 class="text-center">This lab has no employees</h3>
     {{/if}}
-
   </div>
   <hr>
 
@@ -177,7 +195,7 @@
             <tr class="reg-row" data-type="equipment">
               <input type="hidden" name="id" value={{this.id}}>
               <td>
-                <p class="text-center type-transform" data-type-id="{{this.type_id}}"></p>
+                <a href="#" class="type-id" data-toggle="modal" data-target="#loadingModal" data-type-id="{{this.type_id}}"><p class="text-center">ID# {{this.type_id}}</p></a>
               </td>
               <td>
                 <p class="text-center">{{this.calibration_date}}</p>
@@ -186,7 +204,7 @@
                 <p class="text-center">{{this.purchase_date}}</p>
               </td>
               <td>
-                <p class="text-center employee-transform" data-employee-id="{{this.maintainer_id}}"></p>
+                <a href="#" class="employee-id" data-toggle="modal" data-target="#loadingModal" data-employee-id="{{this.maintainer_id}}"><p class="text-center">ID# {{this.maintainer_id}}</p></a>
               </td>
               <td class="buttons">
                   <input class="btn btn-danger" type="button" value="Remove">
