@@ -16,14 +16,13 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Loading...</h4>
+          <h4 class="modal-title"></h4>
         </div>
         <div class="modal-body">
           <img id="loading-img" height="128px" src="/img/progress.gif" alt="Loading...">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <!-- <button id="delete-lab-button" data-lab-id="{{lab_id}}" type="button" class="btn btn-danger">DELETE LAB</button> -->
         </div>
       </div>
     </div>
@@ -194,8 +193,11 @@
         {{#each equipment}}
             <tr class="reg-row" data-type="equipment">
               <input type="hidden" name="id" value={{this.id}}>
-              <td>
+              <!-- <td>
                 <a href="#" class="type-id" data-toggle="modal" data-target="#loadingModal" data-type-id="{{this.type_id}}"><p class="text-center">ID# {{this.type_id}}</p></a>
+              </td> -->
+              <td>
+                <p class="text-center type-id" data-toggle="modal" data-target="#loadingModal" data-type-id="{{this.type_id}}"></p>
               </td>
               <td>
                 <p class="text-center">{{this.calibration_date}}</p>

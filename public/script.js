@@ -24,16 +24,14 @@ $.ajax({
   }
 });
 
-// $(document).ready(function () {
-//   $('p.employee-transform').each(function () {
-//     var str = _.findKey(employeeNames, function (id) { return id == $(this).attr('data-employee-id'); });
-//     console.log("emp transform: " + str);
-//     $(this).text(str);
-//   });
-//   $('p.type-transform').each(function () {
-//     $(this).text(_.findKey(equipmentTypes, function (id) { return id == $(this).text(); }));
-//   });
-// });
+$(document).ready(function () {
+  $('p.type-id').each(function () {
+    $this = $(this);
+    var text = _.findKey(equipmentTypes, function (id) { return id == $this.attr('data-type-id'); });
+    console.log(text)
+    $(this).text(text);
+  });
+});
 
 /* Submit the 'add lab form' in the modal */
 $('#createLab').click(function(event) {
@@ -200,7 +198,7 @@ $('.container').on('click', 'input[type="button"][value="Remove"]', function (ev
   event.preventDefault();
 });
 
-/* Press any of the delete buttons */
+/* Click on an employee id  */
 $('.container').on('click', 'a.employee-id', function (event) {
   $.ajax({
     method: 'GET',
