@@ -263,6 +263,43 @@ $('div#project').on('click', 'a', function (event) {
       for (var i = 0; i < results.length; i++) {
         $('#emptyModal').find('table.table').append($('<tr><td><p class="text-center">' + result.first_name + '</p></td><td><p class="text-center">' + result.last_name + '</p></td><td><p class="text-center">' + result.ext + '</p></td></tr></table>'));
       }
+      $('#emptyModal').find('div.modal-body').append($('<hr><form class="form-inline"><div class="form-group"><label for="search_box">Add Employee</label><input type="text" autocomplete="off" class="form-control typeahead" id="search_box" placeholder="Jane Doe"></div><button type="button" class="btn btn-default search-submit">Add to project</button></form>'));
+
+      var strings = Object.keys(employeeNames);
+
+      var employees = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        local: strings
+      });
+
+      $('input#search_box').typeahead({
+        minLength: 2,
+        highlight: true
+      },
+      {
+        name: 'employees',
+        source: employees
+      });
+
+      $('#emptyModal').on('click', 'button.search-submit', function (event) {
+        var empID = employeeNames[$('input#search_box').typeahead('val')];
+        if (empID) {
+          $.ajax({
+            method: 'POST',
+            url: path + 'employee-project',
+            data: {
+              employee_id: empID,
+              project_id: $this.attr('data-id')
+            },
+            success: function () {
+              location.reload();
+            }
+          });
+        }
+      });
+
+
     });
   }
   event.preventDefault();

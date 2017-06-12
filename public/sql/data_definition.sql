@@ -93,7 +93,6 @@ CREATE TABLE `project_equipment` (
 CREATE TABLE `employee_project` (
   `employee_id` int(11) NOT NULL,
   `project_id` int(11) NOT NULL,
-  `project_hours` int(11) DEFAULT NULL,
   PRIMARY KEY (`employee_id`,`project_id`),
   CONSTRAINT `fk_emplproj_employee`
     FOREIGN KEY (`employee_id`)
