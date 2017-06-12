@@ -252,7 +252,7 @@ $('div#project').on('click', 'a', function (event) {
       for (var i = 0; i < results.length; i++) {
         $('#emptyModal').find('table.table').append($('<tr class="reg-row" data-type="equipment"><td><p class="text-center type-id">' + results[i].name + '</p></td><td><p class="text-center">' + results[i].calibration_date + '</p></td><td><p class="text-center">' + results[i].purchase_date + '</p></td></tr>'));
       }
-      $('#emptyModal').find('div.modal-body').append($('<hr><form><div class="form-group"><label for="search_box">Add Employee</label><input type="text" autocomplete="off" class="form-control typeahead" id="search_box" placeholder="Jane Doe"></div><button type="button" class="btn btn-default btn-block equipment-submit">Add to project</button></form>'));
+      $('#emptyModal').find('div.modal-body').append($('<hr><form><div class="form-group"><label for="search_box">Add Employee</label><input type="text" autocomplete="off" class="form-control typeahead" id="search_box" placeholder="Jane Doe"></div><button type="button" class="btn btn-primary btn-block equipment-submit">Add to project</button></form>'));
 
       var strings = Object.keys(equipmentTypes);
 
@@ -298,7 +298,7 @@ $('div#project').on('click', 'a', function (event) {
       for (var i = 0; i < results.length; i++) {
         $('#emptyModal').find('table.table').append($('<tr><td><p class="text-center">' + results[i].first_name + '</p></td><td><p class="text-center">' + results[i].last_name + '</p></td><td><p class="text-center">' + results[i].ext + '</p></td></tr></table>'));
       }
-      $('#emptyModal').find('div.modal-body').append($('<hr><form><div class="form-group"><label for="search_box">Add Employee</label><input type="text" autocomplete="off" class="form-control typeahead" id="search_box" placeholder="Jane Doe"></div><button type="button" class="btn btn-default btn-block search-submit">Add to project</button></form>'));
+      $('#emptyModal').find('div.modal-body').append($('<hr><form><div class="form-group"><label for="search_box">Add Employee</label><input type="text" autocomplete="off" class="form-control typeahead" id="search_box" placeholder="Jane Doe"></div><button type="button" class="btn btn-primary btn-block search-submit">Add to project</button></form>'));
 
       var strings = Object.keys(employeeNames);
 
