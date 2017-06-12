@@ -51,7 +51,6 @@ app.get('/lab/:id', function(req,res){
     return pool.query('SELECT * FROM `equipment` WHERE lab_id=? ORDER BY id',[req.params.id]);
   }).then(function (results, fields) {
     context.equipment = results;
-    console.log('eq: ', results);
   }).then(function () {
     res.render('lab', context);
   }).catch(function (err) {
